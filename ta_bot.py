@@ -12,10 +12,24 @@ import re
 import sqlite3
 from pathlib import Path
 
+import requests
+
 CANDIDATE_CHUNKS = 40  # chunks pulled from BM25 before grouping by paper
 TOP_PAPERS = 3  # papers cited per turn; hit-rate rewards recall over precision
 CHUNKS_PER_PAPER = 2  # evidence passages kept for each cited paper
 TITLE_WEIGHT = 5.0  # papers are usually asked about by what their title names
+MAX_ANSWER_TOKENS = 500
+DEFAULT_TIMEOUT_S = 60.0
+
+ANSWER_SYSTEM_PROMPT = """You are the teaching assistant for a graduate course on \
+conversational AI. Answer the student's question using only the numbered passages from \
+the course papers.
+
+Rules:
+- Base every claim on the passages. Do not add outside knowledge.
+- Name the paper you are drawing on, using its title.
+- If the passages do not contain the answer, say so plainly instead of guessing.
+- Be accurate and complete, and keep the answer focused on the question."""
 
 STOPWORDS = frozenset(
     """a about across all also an and any are as at be been but by can could did do
@@ -58,6 +72,42 @@ class TABot:
         self.config = config
         db_path = Path(config["corpus_path"]) / "corpus.db"
         self._corpus = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        # The mock's URL has no /v1 suffix but real vLLM URLs usually do.
+        self._base_url = config["endpoint"].rstrip("/").removesuffix("/v1")
+        self._timeout = config.get("timeout", DEFAULT_TIMEOUT_S)
+
+    def _complete(self, messages: list[dict], max_tokens: int = MAX_ANSWER_TOKENS) -> str:
+        """Call the chat endpoint; any endpoint failure surfaces as TimeoutError."""
+        try:
+            response = requests.post(
+                f"{self._base_url}/v1/chat/completions",
+                json={
+                    "model": self.config["model"],
+                    "messages": messages,
+                    "temperature": self.config["temperature"],
+                    "seed": self.config["seed"],
+                    "max_tokens": max_tokens,
+                },
+                timeout=self._timeout,
+            )
+            response.raise_for_status()
+            content = response.json()["choices"][0]["message"]["content"]
+        except (requests.RequestException, KeyError, IndexError, ValueError) as exc:
+            raise TimeoutError(f"Endpoint request failed: {exc}") from exc
+        return (content or "").strip()
+
+    @staticmethod
+    def _format_passages(papers: list[dict]) -> str:
+        """Render retrieved chunks as numbered, attributed evidence."""
+        passages = []
+        for paper in papers:
+            for chunk in paper["chunks"]:
+                number = len(passages) + 1
+                header = f'[{number}] "{paper["title"]}" ({paper["paper_id"]})'
+                if chunk["section"]:
+                    header += f', section: {chunk["section"]}'
+                passages.append(f'{header}\n{chunk["text"]}')
+        return "\n\n".join(passages)
 
     def _retrieve(self, query: str) -> list[dict]:
         """Return the top papers for a query, each with its best chunks."""
@@ -125,8 +175,18 @@ class TABot:
             The harness catches it and marks this turn as 0.
             Do NOT let the process hang — raise, don't wait.
         """
-        # TODO: implement retrieval, generation, and memory update
-        raise NotImplementedError("Implement chat")
+        papers = self._retrieve(message)
+        evidence = self._format_passages(papers) or "(no passages found)"
+        answer = self._complete(
+            [
+                {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": f"Passages:\n{evidence}\n\nQuestion: {message}",
+                },
+            ]
+        )
+        return {"answer": answer, "citations": [p["paper_id"] for p in papers]}
 
     def reset_memory(self, user_id: str) -> None:
         """
