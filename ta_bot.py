@@ -8,6 +8,34 @@ Do NOT rename the class or change the method signatures.
 
 from __future__ import annotations
 
+import re
+import sqlite3
+from pathlib import Path
+
+CANDIDATE_CHUNKS = 40  # chunks pulled from BM25 before grouping by paper
+TOP_PAPERS = 3  # papers cited per turn; hit-rate rewards recall over precision
+CHUNKS_PER_PAPER = 2  # evidence passages kept for each cited paper
+TITLE_WEIGHT = 5.0  # papers are usually asked about by what their title names
+
+STOPWORDS = frozenset(
+    """a about across all also an and any are as at be been but by can could did do
+    does explain describe for from had has have how i in into is it its me my of on
+    or our paper papers please should so such summarize tell than that the their them
+    then these they this those to us used using was we were what when where which
+    while who why will with would you your""".split()
+)
+_TOKEN_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9'-]*")
+
+
+def _fts_query(text: str) -> str:
+    """Build an FTS5 OR query; quoting stops user text being parsed as FTS syntax."""
+    terms = dict.fromkeys(
+        token.lower()
+        for token in _TOKEN_RE.findall(text)
+        if token.lower() not in STOPWORDS and len(token) > 1
+    )
+    return " OR ".join(f'"{term}"' for term in terms)
+
 
 class TABot:
     """Course TA-Bot with RAG retrieval and cross-session memory."""
@@ -28,8 +56,37 @@ class TABot:
             You may add custom keys for your own use.
         """
         self.config = config
-        # TODO: initialise your retrieval pipeline, memory store, etc.
-        raise NotImplementedError("Implement __init__")
+        db_path = Path(config["corpus_path"]) / "corpus.db"
+        self._corpus = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+
+    def _retrieve(self, query: str) -> list[dict]:
+        """Return the top papers for a query, each with its best chunks."""
+        match = _fts_query(query)
+        if not match:
+            return []
+        rows = self._corpus.execute(
+            """SELECT c.chunk_id, c.paper_id, p.title, c.section, c.text,
+                      bm25(chunks_fts, 0, 0, ?, 1.0, 1.0) AS score
+               FROM chunks_fts
+               JOIN chunks c USING (chunk_id)
+               JOIN papers p USING (paper_id)
+               WHERE chunks_fts MATCH ?
+               ORDER BY score
+               LIMIT ?""",
+            (TITLE_WEIGHT, match, CANDIDATE_CHUNKS),
+        ).fetchall()
+
+        papers: dict[str, dict] = {}
+        for _, paper_id, title, section, text, score in rows:
+            paper = papers.setdefault(
+                paper_id, {"paper_id": paper_id, "title": title, "score": 0.0, "chunks": []}
+            )
+            if len(paper["chunks"]) < CHUNKS_PER_PAPER:
+                # FTS5 bm25() is negative; flip it so that bigger means better.
+                paper["score"] += -score
+                paper["chunks"].append({"section": section, "text": text})
+        ranked = sorted(papers.values(), key=lambda p: (-p["score"], p["paper_id"]))
+        return ranked[:TOP_PAPERS]
 
     def chat(
         self,
