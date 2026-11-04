@@ -2,8 +2,13 @@
 CS 6604 / ECE 6256 — Assignment 3: The Course TA-Bot
 Conversational RAG with Memory
 
-Starter stub. Implement the methods below.
-Do NOT rename the class or change the method signatures.
+Pipeline: rewrite follow-up -> BM25 retrieval -> grounded generation, with
+per-session history and a filtered per-user memory store.
+
+Optional config keys, beyond those the harness sets:
+    rewrite     : bool  - rewrite follow-ups before retrieval (default True)
+    timeout     : float - endpoint timeout in seconds (default 60)
+    memory_path : str   - SQLite file for memory (default in-process only)
 """
 
 from __future__ import annotations

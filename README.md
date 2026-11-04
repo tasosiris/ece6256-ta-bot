@@ -262,3 +262,12 @@ hidden test set and real vLLM endpoint.
 - Do **not** hard-code answers or paper ids — the grader detects this.
 - Do **not** use external APIs (OpenAI, Anthropic, etc.) — all calls go through the
   course vLLM endpoint only.
+
+---
+
+## Implementation Notes
+
+`ta_bot.py` implements `TABot`: BM25 retrieval over `corpus.db`, query rewriting for follow-ups,
+per-session history, and a filtered per-user memory store. Optional config keys, all of which
+have defaults: `rewrite` (bool), `timeout` (seconds), `memory_path` (SQLite file; without it,
+memory lasts only for the process).
