@@ -19,6 +19,10 @@ TOP_PAPERS = 3  # papers cited per turn; hit-rate rewards recall over precision
 CHUNKS_PER_PAPER = 2  # evidence passages kept for each cited paper
 TITLE_WEIGHT = 5.0  # papers are usually asked about by what their title names
 MAX_ANSWER_TOKENS = 500
+MAX_REWRITE_TOKENS = 64
+MAX_REWRITE_CHARS = 300
+HISTORY_TURNS = 3  # earlier exchanges kept for rewriting and generation
+RRF_K = 60  # standard reciprocal-rank-fusion damping constant
 DEFAULT_TIMEOUT_S = 60.0
 
 ANSWER_SYSTEM_PROMPT = """You are the teaching assistant for a graduate course on \
@@ -38,7 +42,18 @@ STOPWORDS = frozenset(
     then these they this those to us used using was we were what when where which
     while who why will with would you your""".split()
 )
+REWRITE_SYSTEM_PROMPT = """Rewrite the student's latest message as one standalone search \
+query for finding course papers. Replace pronouns and references such as "it" or "that \
+approach" with what they refer to in the conversation. Output only the query."""
+
 _TOKEN_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9'-]*")
+_REFERS_BACK_RE = re.compile(
+    r"\b(?:these|those|both|so far|earlier|previous(?:ly)?|above|mentioned"
+    r"|all (?:two|three|four|of (?:them|these|those))|the (?:two|three|four)"
+    r"|we (?:discussed|talked|covered)"
+    r"|(?:that|this) (?:approach|method|model|paper|technique|system))\b",
+    re.IGNORECASE,
+)
 
 
 def _fts_query(text: str) -> str:
@@ -75,6 +90,8 @@ class TABot:
         # The mock's URL has no /v1 suffix but real vLLM URLs usually do.
         self._base_url = config["endpoint"].rstrip("/").removesuffix("/v1")
         self._timeout = config.get("timeout", DEFAULT_TIMEOUT_S)
+        self._rewrite_enabled = config.get("rewrite", True)  # ablation switch
+        self._sessions: dict[tuple[str, str], list[dict]] = {}
 
     def _complete(self, messages: list[dict], max_tokens: int = MAX_ANSWER_TOKENS) -> str:
         """Call the chat endpoint; any endpoint failure surfaces as TimeoutError."""
@@ -138,6 +155,51 @@ class TABot:
         ranked = sorted(papers.values(), key=lambda p: (-p["score"], p["paper_id"]))
         return ranked[:TOP_PAPERS]
 
+    def _rewrite(self, message: str, history: list[dict]) -> str | None:
+        """Turn a follow-up into a standalone query; None if the reply is unusable."""
+        transcript = "\n".join(
+            f'Student: {turn["question"]}\nTA: {turn["answer"]}' for turn in history
+        )
+        reply = self._complete(
+            [
+                {"role": "system", "content": REWRITE_SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": f"Conversation:\n{transcript}\n\nLatest message: {message}",
+                },
+            ],
+            max_tokens=MAX_REWRITE_TOKENS,
+        )
+        query = reply.split("\n", 1)[0].strip(" \"'")
+        return query if query and len(query) <= MAX_REWRITE_CHARS else None
+
+    def _gather_papers(self, message: str, history: list[dict]) -> list[dict]:
+        """Retrieve for this turn, then add papers the student is pointing back at."""
+        papers = self._retrieve(message)
+        if history and self._rewrite_enabled:
+            rewritten = self._rewrite(message, history)
+            if rewritten:
+                # Fuse rather than replace: a bad rewrite must not lose the original hits.
+                scores: dict[str, float] = {}
+                by_id: dict[str, dict] = {}
+                for ranking in (papers, self._retrieve(rewritten)):
+                    for rank, paper in enumerate(ranking):
+                        by_id.setdefault(paper["paper_id"], paper)
+                        scores[paper["paper_id"]] = (
+                            scores.get(paper["paper_id"], 0.0) + 1 / (RRF_K + rank)
+                        )
+                ordered = sorted(scores, key=lambda pid: (-scores[pid], pid))
+                papers = [by_id[pid] for pid in ordered[:TOP_PAPERS]]
+
+        if _REFERS_BACK_RE.search(message):
+            seen = {paper["paper_id"] for paper in papers}
+            for turn in history:
+                primary = turn["primary"]
+                if primary and primary["paper_id"] not in seen:
+                    seen.add(primary["paper_id"])
+                    papers.append(primary)
+        return papers
+
     def chat(
         self,
         session_id: str,
@@ -175,16 +237,27 @@ class TABot:
             The harness catches it and marks this turn as 0.
             Do NOT let the process hang — raise, don't wait.
         """
-        papers = self._retrieve(message)
+        # Keyed by user too, so a reused session_id can never cross between users.
+        session = self._sessions.setdefault((user_id, session_id), [])
+        history = session[-HISTORY_TURNS:]
+        papers = self._gather_papers(message, history)
         evidence = self._format_passages(papers) or "(no passages found)"
-        answer = self._complete(
-            [
-                {"role": "system", "content": ANSWER_SYSTEM_PROMPT},
-                {
-                    "role": "user",
-                    "content": f"Passages:\n{evidence}\n\nQuestion: {message}",
-                },
-            ]
+
+        messages = [{"role": "system", "content": ANSWER_SYSTEM_PROMPT}]
+        for turn in history:
+            messages.append({"role": "user", "content": turn["question"]})
+            messages.append({"role": "assistant", "content": turn["answer"]})
+        messages.append(
+            {"role": "user", "content": f"Passages:\n{evidence}\n\nQuestion: {message}"}
+        )
+        answer = self._complete(messages)
+
+        session.append(
+            {
+                "question": message,
+                "answer": answer,
+                "primary": papers[0] if papers else None,
+            }
         )
         return {"answer": answer, "citations": [p["paper_id"] for p in papers]}
 
