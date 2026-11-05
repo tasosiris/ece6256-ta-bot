@@ -271,3 +271,27 @@ hidden test set and real vLLM endpoint.
 per-session history, and a filtered per-user memory store. Optional config keys, all of which
 have defaults: `rewrite` (bool), `timeout` (seconds), `memory_path` (SQLite file; without it,
 memory lasts only for the process).
+
+```bash
+python -m unittest discover tests           # offline tests, no model needed
+```
+
+### Ablation kit
+
+`ablation/` compares retrieval with follow-up rewriting off and on. `dialogues.jsonl` holds 30
+follow-ups and 10 standalone controls, split into `tune` and `heldout`: adjust the bot on `tune`
+and report `heldout`.
+
+```bash
+python ablation/run_ablation.py --endpoint URL --model NAME --split heldout
+python ablation/plot.py                     # writes ablation/ablation.png
+```
+
+To develop against a local model, use the context-size override in `ablation/Modelfile`, because
+Ollama silently cuts long prompts at its default size:
+
+```bash
+ollama pull llama3.1:8b
+ollama create llama3.1-8k -f ablation/Modelfile
+python eval_dev.py --endpoint http://localhost:11434/v1 --model llama3.1-8k
+```

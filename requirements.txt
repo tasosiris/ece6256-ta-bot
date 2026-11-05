@@ -4,6 +4,7 @@
 # --- Core (needed by most TABot implementations) ---
 requests>=2.31,<3          # HTTP client for vLLM endpoint
 numpy>=1.24,<2             # Embedding math / vector similarity
+matplotlib>=3.7,<4         # ablation/plot.py only
 
 # --- Optional but recommended ---
 # sentence-transformers    # If you embed locally instead of via vLLM

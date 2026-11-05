@@ -1,0 +1,40 @@
+{"id": "followup-01", "kind": "followup", "split": "tune", "turns": ["How does Direct Preference Optimization work?", "What were its main experimental results?"], "gold_paper_id": "L10-04"}
+{"id": "followup-02", "kind": "followup", "split": "heldout", "turns": ["What is ColBERT's late interaction?", "How fast is it compared to earlier models?"], "gold_paper_id": "L13-04"}
+{"id": "followup-03", "kind": "followup", "split": "tune", "turns": ["What problem does MemGPT solve?", "How was it evaluated?"], "gold_paper_id": "L14-01"}
+{"id": "followup-04", "kind": "followup", "split": "heldout", "turns": ["What is the ReAct framework?", "Which tasks did the authors test it on?"], "gold_paper_id": "L17-01"}
+{"id": "followup-05", "kind": "followup", "split": "tune", "turns": ["What is LoRA?", "What are its advantages over the earlier approach?"], "gold_paper_id": "L11-01"}
+{"id": "followup-06", "kind": "followup", "split": "heldout", "turns": ["What is self-consistency for chain-of-thought prompting?", "How much does it improve accuracy?"], "gold_paper_id": "L16-02"}
+{"id": "followup-07", "kind": "followup", "split": "tune", "turns": ["What is Self-RAG?", "What special tokens does it use?"], "gold_paper_id": "L13-06"}
+{"id": "followup-08", "kind": "followup", "split": "heldout", "turns": ["What did the MT-Bench work find about LLM-as-a-judge?", "How well did it agree with humans?"], "gold_paper_id": "L12-01"}
+{"id": "followup-09", "kind": "followup", "split": "tune", "turns": ["What is speculative decoding?", "What speedup did they report?"], "gold_paper_id": "L08-07"}
+{"id": "followup-10", "kind": "followup", "split": "heldout", "turns": ["What is PagedAttention in vLLM?", "How much throughput gain does it give?"], "gold_paper_id": "L11-03"}
+{"id": "followup-11", "kind": "followup", "split": "tune", "turns": ["What is Ragas?", "Which metrics does it define?"], "gold_paper_id": "L13-08"}
+{"id": "followup-12", "kind": "followup", "split": "heldout", "turns": ["What is the Graph RAG approach?", "What kinds of questions is it best at?"], "gold_paper_id": "L13-09"}
+{"id": "followup-13", "kind": "followup", "split": "tune", "turns": ["What is LongMemEval?", "Which memory abilities does it test?"], "gold_paper_id": "L14-03"}
+{"id": "followup-14", "kind": "followup", "split": "heldout", "turns": ["What is Mem0?", "How does it compare on latency?"], "gold_paper_id": "L14-06"}
+{"id": "followup-15", "kind": "followup", "split": "tune", "turns": ["What is Toolformer?", "Which tools did they give it?"], "gold_paper_id": "L17-02"}
+{"id": "followup-16", "kind": "followup", "split": "heldout", "turns": ["What is Constitutional AI?", "How is the critique step performed?"], "gold_paper_id": "L10-05"}
+{"id": "followup-17", "kind": "followup", "split": "tune", "turns": ["What is LIMA?", "How many training examples did they use?"], "gold_paper_id": "L10-06"}
+{"id": "followup-18", "kind": "followup", "split": "heldout", "turns": ["What is BERT?", "Which datasets showed the largest gains?"], "gold_paper_id": "L09-01"}
+{"id": "followup-19", "kind": "followup", "split": "tune", "turns": ["What is the MultiWOZ dataset?", "How was it collected?"], "gold_paper_id": "L03-03"}
+{"id": "followup-20", "kind": "followup", "split": "heldout", "turns": ["What is the TRADE state generator for dialogue?", "What happens when it meets an unseen domain?"], "gold_paper_id": "L03-07"}
+{"id": "followup-21", "kind": "followup", "split": "tune", "turns": ["What is FlashAttention?", "How much faster is it?"], "gold_paper_id": "L08-05"}
+{"id": "followup-22", "kind": "followup", "split": "heldout", "turns": ["What is Tree of Thoughts?", "Which tasks did it solve?"], "gold_paper_id": "L16-07"}
+{"id": "followup-23", "kind": "followup", "split": "tune", "turns": ["What is SWE-bench?", "How well did the best model do?"], "gold_paper_id": "L17-04"}
+{"id": "followup-24", "kind": "followup", "split": "heldout", "turns": ["What is the TOFU unlearning benchmark?", "What does its dataset contain?"], "gold_paper_id": "L15-03"}
+{"id": "followup-25", "kind": "followup", "split": "tune", "turns": ["What does the paper How NOT To Evaluate Your Dialogue System study?", "Which metrics did it find problematic?"], "gold_paper_id": "L12-04"}
+{"id": "followup-26", "kind": "followup", "split": "heldout", "turns": ["What is few-shot generative conversational query rewriting?", "What training data did it need?"], "gold_paper_id": "L13-12"}
+{"id": "followup-27", "kind": "followup", "split": "tune", "turns": ["What is QLoRA?", "How much memory does it need?"], "gold_paper_id": "L11-02"}
+{"id": "followup-28", "kind": "followup", "split": "heldout", "turns": ["What are the scaling laws for neural language models?", "What relationship did they find?"], "gold_paper_id": "L09-03"}
+{"id": "followup-29", "kind": "followup", "split": "tune", "turns": ["What is DialoGPT?", "What corpus was it trained on?"], "gold_paper_id": "L06-04"}
+{"id": "followup-30", "kind": "followup", "split": "heldout", "turns": ["What is Visual Instruction Tuning?", "What do the instructions look like?"], "gold_paper_id": "L23-02"}
+{"id": "control-01", "kind": "control", "split": "tune", "turns": ["What is Sentence-BERT?", "How does Moshi handle real-time speech dialogue?"], "gold_paper_id": "L21-01"}
+{"id": "control-02", "kind": "control", "split": "heldout", "turns": ["What is Mem0?", "How does wav2vec 2.0 learn speech representations?"], "gold_paper_id": "L18-01"}
+{"id": "control-03", "kind": "control", "split": "tune", "turns": ["What is DeepSeek-R1?", "What does the SoundStream neural audio codec do?"], "gold_paper_id": "L20-01"}
+{"id": "control-04", "kind": "control", "split": "heldout", "turns": ["What is BEIR?", "How is robust speech recognition achieved through large-scale weak supervision?"], "gold_paper_id": "L19-01"}
+{"id": "control-05", "kind": "control", "split": "tune", "turns": ["How does LaMDA filter unsafe responses?", "What is machine unlearning and why is it needed?"], "gold_paper_id": "L15-04"}
+{"id": "control-06", "kind": "control", "split": "heldout", "turns": ["Explain ColBERT.", "What are induction heads and how do they relate to in-context learning?"], "gold_paper_id": "L24-01"}
+{"id": "control-07", "kind": "control", "split": "tune", "turns": ["What is rotary position embedding?", "How can indirect prompt injection compromise LLM-integrated applications?"], "gold_paper_id": "L22-03"}
+{"id": "control-08", "kind": "control", "split": "heldout", "turns": ["What is LoRA?", "How does AgentDojo evaluate prompt injection attacks and defenses?"], "gold_paper_id": "L17-05"}
+{"id": "control-09", "kind": "control", "split": "tune", "turns": ["What is Meena?", "What does the Llama 3 report say about its herd of models?"], "gold_paper_id": "L09-07"}
+{"id": "control-10", "kind": "control", "split": "heldout", "turns": ["What is ReAct?", "How does sycophancy show up in language models?"], "gold_paper_id": "L10-07"}

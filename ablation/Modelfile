@@ -1,0 +1,3 @@
+FROM llama3.1:8b
+# Ollama cuts long prompts silently at its default context size, which would drop passages.
+PARAMETER num_ctx 8192
