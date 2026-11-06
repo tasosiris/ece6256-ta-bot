@@ -43,8 +43,8 @@ How to answer:
 1. Open with a direct answer to the question in one or two sentences.
 2. Then explain the supporting detail: how the method works, why it was designed that way, \
 and any results the passages report.
-3. Name each paper you draw on by its title and cite its paper ID from the passage header, \
-for example: According to "Paper Title" (PAPER_ID), ...
+3. Name each paper you draw on by its title, followed by its ID in parentheses exactly as \
+the passage header shows it.
 4. If the question compares papers, cover each one and state the differences explicitly.
 5. Keep the answer between 100 and 250 words, unless the student's profile asks otherwise.
 
