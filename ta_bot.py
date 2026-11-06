@@ -22,9 +22,10 @@ import requests
 
 CANDIDATE_CHUNKS = 40  # chunks pulled from BM25 before grouping by paper
 TOP_PAPERS = 3  # papers per query; explicit comparisons may add earlier papers
-CHUNKS_PER_PAPER = 2  # evidence passages kept for each cited paper
+CHUNKS_PER_PAPER = 3  # evidence passages kept for each cited paper
+SCORED_CHUNKS = 2  # passages that count toward a paper's rank
 TITLE_WEIGHT = 5.0  # papers are usually asked about by what their title names
-MAX_ANSWER_TOKENS = 500
+MAX_ANSWER_TOKENS = 800
 MAX_REWRITE_TOKENS = 64
 MAX_REWRITE_CHARS = 300
 MAX_REWRITE_CONTEXT_CHARS = 300  # enough of each answer to resolve a reference
@@ -339,9 +340,10 @@ class TABot:
             paper = papers.setdefault(
                 paper_id, {"paper_id": paper_id, "title": title, "score": 0.0, "chunks": []}
             )
-            if len(paper["chunks"]) < CHUNKS_PER_PAPER:
+            if len(paper["chunks"]) < SCORED_CHUNKS:
                 # FTS5 bm25() is negative; flip it so that bigger means better.
                 paper["score"] += -score
+            if len(paper["chunks"]) < CHUNKS_PER_PAPER:
                 paper["chunks"].append({"section": section, "text": text})
         ranked = sorted(papers.values(), key=lambda p: (-p["score"], p["paper_id"]))
         return ranked[:self._top_papers]
