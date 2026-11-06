@@ -262,7 +262,7 @@ class TABot:
         """
         self.config = dict(config)
         db_path = Path(config["corpus_path"]) / "corpus.db"
-        self._corpus = sqlite3.connect(db_path.resolve().as_uri() + "?mode=ro", uri=True)
+        self._corpus = sqlite3.connect(db_path.resolve().as_uri() + "?mode=ro", uri=True, check_same_thread=False)
         # The mock's URL has no /v1 suffix but real vLLM URLs usually do.
         self._base_url = config["endpoint"].rstrip("/")
         if self._base_url.endswith("/v1"):
@@ -274,7 +274,7 @@ class TABot:
             raise ValueError("top_papers must be positive")
         self._sessions: dict[tuple[str, str], list[dict]] = {}
         # Defaults to in-process; set memory_path to keep facts across restarts.
-        self._memory = sqlite3.connect(str(config.get("memory_path", ":memory:")))
+        self._memory = sqlite3.connect(str(config.get("memory_path", ":memory:")), check_same_thread=False)
         self._memory.execute(
             """CREATE TABLE IF NOT EXISTS facts (
                    user_id TEXT, category TEXT, fact TEXT,
