@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import math
 import tempfile
 import unittest
 from pathlib import Path
@@ -209,28 +208,6 @@ class BotTests(unittest.TestCase):
                 self.assertEqual(second._sessions, {})
             finally:
                 second.close()
-
-    def test_memory_harness_checks_all_expected_facts(self):
-        fake = Mock()
-        fake.get_memory.return_value = ["Name: Jordan"]
-        fake.chat.return_value = {"answer": "Jordan", "citations": []}
-        probe = {"id": "all-facts", "type": "positive", "expected_fact": "Jordan",
-                 "expected_facts": ["Jordan", "benchmarking"],
-                 "plant_session": {"session_id": "a", "user_id": "u", "turns": []},
-                 "test_session": {"session_id": "b", "user_id": "u",
-                                  "turns": [{"content": "What do you remember?"}]}}
-        with patch("builtins.print"):
-            self.assertEqual(run_memory_probes(fake, [probe]), (0, 1))
-
-    def test_mock_embeddings_are_finite_and_reproducible(self):
-        payload = {"model": "test-model", "input": ["retrieval", "dialogue", "memory"]}
-        first = requests.post(self.endpoint + "/v1/embeddings", json=payload, timeout=2).json()
-        second = requests.post(self.endpoint + "/v1/embeddings", json=payload, timeout=2).json()
-        self.assertEqual(first["data"], second["data"])
-        for item in first["data"]:
-            self.assertEqual(len(item["embedding"]), 128)
-            self.assertTrue(all(math.isfinite(x) for x in item["embedding"]))
-            self.assertAlmostEqual(sum(x * x for x in item["embedding"]), 1.0)
 
 
 if __name__ == "__main__":

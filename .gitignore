@@ -5,10 +5,4 @@ venv/
 .env
 .DS_Store
 corpus/pdf/
-ablation/results*.json
 dist/
-*.sqlite
-*.sqlite3
-.pytest_cache/
-course_endpoint.local.json
-results-course/
