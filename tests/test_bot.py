@@ -176,7 +176,10 @@ class Conversation(unittest.TestCase):
     def test_rewrite_label_is_stripped_and_used(self) -> None:
         bot = self.bot()
         bot.chat("s", "u", "How does DPO work?")
-        self.assertEqual(bot._rewrite("its limits?", []), "Direct Preference Optimization reward model")
+        self.assertEqual(
+            bot._rewrite("What about its reward model?", []),
+            "Direct Preference Optimization reward model",
+        )
         self.assertIn("L10-04", bot.chat("s", "u", "What are its limitations?")["citations"])
 
     def test_rewrite_can_be_disabled(self) -> None:

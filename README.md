@@ -228,12 +228,12 @@ case where the judge scored your system wrongly — with evidence.
 
 Before submitting, verify:
 
-- [ ] `python eval_dev.py --mock` runs without errors
-- [ ] `chat()` returns the correct schema (`{"answer": str, "citations": [paper_id, ...]}`)
-- [ ] Citations are `paper_id` strings from `corpus.db` (papers table), not chunk ids or filenames
-- [ ] `reset_memory()` + `get_memory()` work correctly
-- [ ] `requirements.txt` lists all your dependencies
-- [ ] No hard-coded endpoints, file paths, or model names — everything comes from `config`
+- [x] `python eval_dev.py --mock` runs without errors
+- [x] `chat()` returns the correct schema (`{"answer": str, "citations": [paper_id, ...]}`)
+- [x] Citations are `paper_id` strings from `corpus.db` (papers table), not chunk ids or filenames
+- [x] `reset_memory()` + `get_memory()` work correctly
+- [x] `requirements.txt` lists all runtime dependencies (report tools are in `requirements-dev.txt`)
+- [x] No hard-coded endpoints, file paths, or model names in `TABot` — everything comes from `config`
 
 ### What to submit
 
@@ -268,19 +268,79 @@ hidden test set and real vLLM endpoint.
 ## Implementation Notes
 
 `ta_bot.py` implements `TABot`: BM25 retrieval over `corpus.db`, query rewriting for follow-ups,
-per-session history, and a filtered per-user memory store. Optional config keys, all of which
-have defaults: `rewrite` (bool), `timeout` (seconds), `memory_path` (SQLite file; without it,
-memory lasts only for the process).
+per-session history, and a filtered per-user memory store. Python 3.8 or newer is supported.
+The supplied chunking is used without rebuilding the corpus. Generation requests contain the
+configured model, temperature, and seed. Network errors and malformed or empty completions
+raise `TimeoutError`.
+
+Optional config keys:
+
+| Key | Default | Purpose |
+|---|---|---|
+| `rewrite` | `True` | Rewrite anaphoric follow-ups and retain their last subject. Explicit comparisons also retain earlier primary papers. |
+| `timeout` | `60` | Timeout in seconds for each endpoint request. |
+| `memory_path` | `":memory:"` | SQLite file for accepted user facts. Use a file to retain memory across process restarts. |
+| `top_papers` | `3` | Papers selected per retrieval query; contextual carry-over may add papers. This is the ablation axis. |
+
+Memory accepts explicit first-person names, projects, interests, academic backgrounds, and
+response preferences. It refuses opt-outs, sensitive information, third-party and quoted
+statements, hypotheticals, questions, negations, and temporary states. New names/projects
+replace previous values; other facts are deduplicated, with a maximum of 30 per user.
+History is limited to three exchanges per `(user_id, session_id)`. Refused statements and
+their responses are redacted before future replay. `reset_memory()` and explicit forgetting
+also clear the user's histories; category deletion preserves other stored facts.
+`get_memory()` returns a read-only copy. Call the optional `close()` when finished with a bot.
+
+Filtering uses conservative English patterns and can miss paraphrases or reject harmless
+academic language. SQLite files are ordinary, unencrypted files. The current user message
+still goes to the configured course endpoint when generation is needed. Returned citations
+identify evidence supplied to generation; they do not independently verify generated claims.
+
+### Reproduce the completed local run
 
 ```bash
-python -m unittest discover tests           # offline tests, no model needed
+python -m pip install -r requirements-dev.txt
+python scripts/verify.py
+python experiments/ablation.py --mock
+python scripts/build_report.py
+python scripts/build_submission.py
 ```
 
-### Ablation kit
+`requirements-lock.txt` records the exact packages tested in a fresh Python 3.8 environment.
+For that environment, install it instead of the version ranges in `requirements-dev.txt`.
+Only `requirements.txt` is needed to run the bot or the standard self-check.
 
-`ablation/` compares retrieval with follow-up rewriting off and on. `dialogues.jsonl` holds 30
-follow-ups and 10 standalone controls, split into `tune` and `heldout`: adjust the bot on `tune`
-and report `heldout`.
+The checks report 35 passing regression tests, 100% retrieval recall on 10 single-turn
+questions and 3 dialogue endings, and 12/12 memory probes (2 public positives, 2 additional
+positives, and 8 authored negatives). The evaluation checks **all** `expected_facts` when
+provided, and checks the test user's store for cross-user isolation probes.
+
+The ablation varies `top_papers` over 1, 2, 3, 5, and 8, with two fresh runs at each setting.
+All settings achieve 100% public retrieval recall, including all 10 dialogue turns. Mean
+evidence size rises from 4,242 to 14,178 characters. This small set shows no recall benefit
+from larger k; it does not establish answer quality or the best k on unseen questions.
+The existing default of 3 is retained. Repeated mock answers and citations match exactly.
+
+Generated deliverables:
+
+| Path | Contents |
+|---|---|
+| `results/ablation.json` | Raw questions, gold labels, answers, citations, timings, evidence sizes, repeats, and source/data hashes. Gold labels are used only after `chat()` for scoring. |
+| `results/ablation.png`, `results/ablation.pdf` | Exportable ablation plot. |
+| `results/verification.json`, `results/unit_tests.txt`, `results/dev_eval.txt` | Test metadata and full logs. |
+| `report/report.pdf` | Three-page report with the study, memory design, limitations, and AI-use disclosure. |
+| `dist/ece6256-ta-bot.zip` | Code submission with `ta_bot.py` at the root, corpus, tests, scripts, and report; excludes virtual environments, Git history, and runtime memory files. |
+
+The report builder checks the measured implementation's hash before generating the PDF.
+The zip is created from explicit project paths. Extract it into an empty directory and run
+`python eval_dev.py --mock` to check the submission independently of the checkout.
+
+### Rewriting ablation kit
+
+`experiments/ablation.py` varies `top_papers`, which the public dev set cannot separate.
+`ablation/` compares context handling on and off (`rewrite`) on questions built to separate
+them: 30 follow-ups and 10 standalone controls, split into `tune` and `heldout`. Adjust the bot
+on `tune` and report `heldout`. It needs a real model, because the mock cannot rewrite.
 
 ```bash
 python ablation/run_ablation.py --endpoint URL --model NAME --split heldout
@@ -295,3 +355,44 @@ ollama pull llama3.1:8b
 ollama create llama3.1-8k -f ablation/Modelfile
 python eval_dev.py --endpoint http://localhost:11434/v1 --model llama3.1-8k
 ```
+
+### Configure the course endpoint
+
+The server is provided by the course staff; this project does not launch it. Once you have
+its URL, save the connection with:
+
+```bash
+python scripts/configure_endpoint.py --endpoint "$COURSE_ENDPOINT"
+```
+
+The setup script checks `/v1/models`, detects the model if exactly one is served, and saves
+the validated settings in `course_endpoint.local.json` (gitignored and excluded from the
+submission archive). If several models are served, add `--model "$COURSE_MODEL"` to select
+one. It accepts URLs with or without a `/v1` suffix. It only saves after a successful check.
+No course connection is created until you supply a real server URL.
+
+After setup, run:
+
+```bash
+python eval_dev.py
+python experiments/ablation.py
+```
+
+The ablation saves real-endpoint results to `results-course/` by default. Both tools resolve
+settings from command-line arguments first, then `COURSE_ENDPOINT`/`COURSE_MODEL`, then the
+local configuration file. If the model is omitted, they query `/v1/models` to detect it.
+`--mock` continues to select the bundled mock explicitly. The harness still passes its own
+configuration directly to `TABot`, independently of this local CLI setup.
+
+You can also supply the URL and served model explicitly without saving a local file:
+
+```bash
+python eval_dev.py --endpoint "$COURSE_ENDPOINT" --model "$COURSE_MODEL"
+python experiments/ablation.py --endpoint "$COURSE_ENDPOINT" --model "$COURSE_MODEL" --output results-course
+```
+
+These variables must be set to the URL and model provided by the course staff. Real-model
+results should remain separate from the mock artifacts. No course endpoint was available
+for the recorded run: judged answer quality, hidden-set scores, and real-model leakage
+remain unmeasured. The mock returns canned text, so its retrieval and memory checks cannot
+establish the real-model answer-quality threshold.
