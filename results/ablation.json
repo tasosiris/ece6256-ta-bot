@@ -1,0 +1,4013 @@
+{
+  "metadata": {
+    "mode": "mock",
+    "model": "mock-model",
+    "created_utc": "2026-11-05T23:17:38.805454+00:00",
+    "python": "3.8.5",
+    "sqlite": "3.33.0",
+    "requests": "2.32.4",
+    "platform": "Linux-5.15.0-202-generic-x86_64-with-glibc2.10",
+    "seed": 42,
+    "temperature": 0,
+    "rewrite": true,
+    "repeats": 2,
+    "single_questions": 10,
+    "dialogues": 3,
+    "dialogue_turns": 10,
+    "answer_quality": null,
+    "sha256": {
+      "ta_bot.py": "d6590b766f1a0752df20f7a54e45207f823379db88e8f8fbc3d709498b658163",
+      "mock_endpoint.py": "40b222d9674f3a07a5f035d6d1de29fbf32da72612d440403711a150ba7e45be",
+      "endpoint_config.py": "19695e780db339dea0a3816dd0079679ea43777d30a9b904fbab15434d1acc5e",
+      "ablation.py": "ac63946bcd1229c6bd8300f58b1ad269604039123267f3783968bd50c559fbaa",
+      "corpus.db": "7a48f25e28b6e0c8976eaa625ca09feca8c9ce2df95e826c9e69c978db8460ff",
+      "single_turn.jsonl": "3ebcf2de33424ebcc52d163a87ead39fa7c24609e4b1ee8f6e834093cc12dec7",
+      "multi_turn.jsonl": "436b89500892f83cc004fd3b8bf6a373e8abc21bc2c2ba7c1f432783d669b77c"
+    },
+    "limitations": "Small public dev set; mock completions cannot establish answer quality. Citations identify supplied evidence; contextual carry-over can exceed k. Wall time includes endpoint overhead and is not a graded-server estimate."
+  },
+  "settings": [
+    {
+      "top_papers": 1,
+      "metrics": {
+        "single_hit_rate": 1.0,
+        "multi_final_hit_rate": 1.0,
+        "multi_all_turn_hit_rate": 1.0,
+        "mean_citations": 1.45,
+        "mean_evidence_chars": 4241.7,
+        "mean_elapsed_seconds": 0.0209530634996554
+      },
+      "identical_repeats": true,
+      "runs": [
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 4504,
+            "elapsed_seconds": 0.02679008400082239
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2218,
+            "elapsed_seconds": 0.02008053999816184
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3489,
+            "elapsed_seconds": 0.012975191999430535
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3110,
+            "elapsed_seconds": 0.028881082998850616
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3872,
+            "elapsed_seconds": 0.025811064999288647
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2500,
+            "elapsed_seconds": 0.014966655999160139
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2934,
+            "elapsed_seconds": 0.023638986000150908
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3134,
+            "elapsed_seconds": 0.015428279999468941
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1640,
+            "elapsed_seconds": 0.02775439199831453
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3300,
+            "elapsed_seconds": 0.028969557999516837
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2328,
+            "elapsed_seconds": 0.0168143120026798
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6617,
+            "elapsed_seconds": 0.018552883000666043
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10700,
+            "elapsed_seconds": 0.023297749998164363
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2885,
+            "elapsed_seconds": 0.025424819999898318
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.015326795000873972
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8069,
+            "elapsed_seconds": 0.025494756999250967
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10896,
+            "elapsed_seconds": 0.020997258001443697
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1695,
+            "elapsed_seconds": 0.020077571000001626
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1844,
+            "elapsed_seconds": 0.014799795997532783
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3400,
+            "elapsed_seconds": 0.012979491999431048
+          }
+        ],
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 4504,
+            "elapsed_seconds": 0.021356312001444167
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2218,
+            "elapsed_seconds": 0.01958679200106417
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3489,
+            "elapsed_seconds": 0.012801442997442791
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3110,
+            "elapsed_seconds": 0.028654167999775382
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3872,
+            "elapsed_seconds": 0.02587226900141104
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2500,
+            "elapsed_seconds": 0.014990009000030113
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2934,
+            "elapsed_seconds": 0.023738525000226218
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3134,
+            "elapsed_seconds": 0.01526318800097215
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1640,
+            "elapsed_seconds": 0.02753756899983273
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3300,
+            "elapsed_seconds": 0.029376273003435927
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2328,
+            "elapsed_seconds": 0.017508468001324218
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6617,
+            "elapsed_seconds": 0.018898750997323077
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10700,
+            "elapsed_seconds": 0.023760432999551995
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 2885,
+            "elapsed_seconds": 0.023885911999968812
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.012718098998448113
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8069,
+            "elapsed_seconds": 0.020000229000288527
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10896,
+            "elapsed_seconds": 0.020075291002285667
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1695,
+            "elapsed_seconds": 0.021720848002587445
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 1844,
+            "elapsed_seconds": 0.015423893000843236
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 1,
+            "evidence_chars": 3400,
+            "elapsed_seconds": 0.015436197001690743
+          }
+        ]
+      ]
+    },
+    {
+      "top_papers": 2,
+      "metrics": {
+        "single_hit_rate": 1.0,
+        "multi_final_hit_rate": 1.0,
+        "multi_all_turn_hit_rate": 1.0,
+        "mean_citations": 2.4,
+        "mean_evidence_chars": 7219.4,
+        "mean_elapsed_seconds": 0.020161269799791624
+      },
+      "identical_repeats": true,
+      "runs": [
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7046,
+            "elapsed_seconds": 0.015576247998978943
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5812,
+            "elapsed_seconds": 0.014180832997226389
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6444,
+            "elapsed_seconds": 0.010880600999371381
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6247,
+            "elapsed_seconds": 0.03304965600182186
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7216,
+            "elapsed_seconds": 0.027266076998785138
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.015988440998626174
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6912,
+            "elapsed_seconds": 0.024920946998463478
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7577,
+            "elapsed_seconds": 0.018323489999602316
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3887,
+            "elapsed_seconds": 0.021688784003345063
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6990,
+            "elapsed_seconds": 0.022463973000412807
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6369,
+            "elapsed_seconds": 0.013646431998495245
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.02377891499781981
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 14779,
+            "elapsed_seconds": 0.02341336699828389
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5654,
+            "elapsed_seconds": 0.025970263002818683
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.01616582199858385
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 11357,
+            "elapsed_seconds": 0.02594945300006657
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13616,
+            "elapsed_seconds": 0.02114363300279365
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5528,
+            "elapsed_seconds": 0.02070339100100682
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.014653271002316615
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.01346179899701383
+          }
+        ],
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7046,
+            "elapsed_seconds": 0.021727570998336887
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5812,
+            "elapsed_seconds": 0.020716822997201234
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6444,
+            "elapsed_seconds": 0.01298410700110253
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6247,
+            "elapsed_seconds": 0.029019972000241978
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7216,
+            "elapsed_seconds": 0.02689275699958671
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.01601479999953881
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6912,
+            "elapsed_seconds": 0.024820529000862734
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 7577,
+            "elapsed_seconds": 0.015959780001139734
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3887,
+            "elapsed_seconds": 0.02844437900057528
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6990,
+            "elapsed_seconds": 0.029653937999682967
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 6369,
+            "elapsed_seconds": 0.017183817999466555
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.0189402859978145
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 14779,
+            "elapsed_seconds": 0.02413234500272665
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5654,
+            "elapsed_seconds": 0.025869034998322604
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.015254819998517632
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 11357,
+            "elapsed_seconds": 0.02556138499858207
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13616,
+            "elapsed_seconds": 0.021266944000672083
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5528,
+            "elapsed_seconds": 0.020893510998575948
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.015661850000469713
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.01350723099676543
+          }
+        ]
+      ]
+    },
+    {
+      "top_papers": 3,
+      "metrics": {
+        "single_hit_rate": 1.0,
+        "multi_final_hit_rate": 1.0,
+        "multi_all_turn_hit_rate": 1.0,
+        "mean_citations": 3.1,
+        "mean_evidence_chars": 9176.6,
+        "mean_elapsed_seconds": 0.02159136455029511
+      },
+      "identical_repeats": true,
+      "runs": [
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9794,
+            "elapsed_seconds": 0.022070507002354134
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8869,
+            "elapsed_seconds": 0.020516267999482807
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9808,
+            "elapsed_seconds": 0.013833927001542179
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8479,
+            "elapsed_seconds": 0.02971483999863267
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9944,
+            "elapsed_seconds": 0.02689229500174406
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.015864861001318786
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9289,
+            "elapsed_seconds": 0.0251567220002471
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 11325,
+            "elapsed_seconds": 0.016026260000217007
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.028544241999043152
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 7383,
+            "elapsed_seconds": 0.032785281000542454
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9382,
+            "elapsed_seconds": 0.017471286999352742
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.019493789000989636
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 18911,
+            "elapsed_seconds": 0.02441573900068761
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 7470,
+            "elapsed_seconds": 0.02714828899843269
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.015626403997885063
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 12089,
+            "elapsed_seconds": 0.02593661400169367
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 16329,
+            "elapsed_seconds": 0.02147066700126743
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9368,
+            "elapsed_seconds": 0.020730889998958446
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.01489825099997688
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.01323015800153371
+          }
+        ],
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9794,
+            "elapsed_seconds": 0.021898612998484168
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8869,
+            "elapsed_seconds": 0.020159250998403877
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9808,
+            "elapsed_seconds": 0.013433300999167841
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 8479,
+            "elapsed_seconds": 0.029365025002334733
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9944,
+            "elapsed_seconds": 0.0263908460001403
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.015373227000964107
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9289,
+            "elapsed_seconds": 0.024212379998061806
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 11325,
+            "elapsed_seconds": 0.015441241001099115
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.028066761999070877
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 7383,
+            "elapsed_seconds": 0.02958775200022501
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9382,
+            "elapsed_seconds": 0.016862952001247322
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.01895040300223627
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 18911,
+            "elapsed_seconds": 0.02414105599746108
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 7470,
+            "elapsed_seconds": 0.026389272999949753
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.015751495000586146
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 12089,
+            "elapsed_seconds": 0.02589413000168861
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-06",
+              "L10-01",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 16329,
+            "elapsed_seconds": 0.02146943099796772
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 9368,
+            "elapsed_seconds": 0.020575021000695415
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.01478158299869392
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.01331130800099345
+          }
+        ]
+      ]
+    },
+    {
+      "top_papers": 5,
+      "metrics": {
+        "single_hit_rate": 1.0,
+        "multi_final_hit_rate": 1.0,
+        "multi_all_turn_hit_rate": 1.0,
+        "mean_citations": 4.35,
+        "mean_evidence_chars": 12139.2,
+        "mean_elapsed_seconds": 0.020259198000894686
+      },
+      "identical_repeats": true,
+      "runs": [
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04",
+              "L09-07",
+              "L10-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13833,
+            "elapsed_seconds": 0.02187826100271195
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08",
+              "L13-07",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14254,
+            "elapsed_seconds": 0.019950606001657434
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01",
+              "L02-01",
+              "L05-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13645,
+            "elapsed_seconds": 0.013079901000310201
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02",
+              "L18-01",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14485,
+            "elapsed_seconds": 0.029465777002769755
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10",
+              "L15-03",
+              "L10-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13358,
+            "elapsed_seconds": 0.02655056000003242
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.015190084002824733
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10835,
+            "elapsed_seconds": 0.024305064001964638
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03",
+              "L08-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 13851,
+            "elapsed_seconds": 0.015426160000060918
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.028171549001854146
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08",
+              "L12-08",
+              "L17-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 12051,
+            "elapsed_seconds": 0.029714788997807773
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06",
+              "L14-04",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13301,
+            "elapsed_seconds": 0.017058367000572616
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.019370927999261767
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L01-04",
+              "L13-09",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 7,
+            "evidence_chars": 24025,
+            "elapsed_seconds": 0.024472730998240877
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06",
+              "L10-04",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13530,
+            "elapsed_seconds": 0.026142756003537215
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.015409237999847392
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L06-03",
+              "L16-06",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15485,
+            "elapsed_seconds": 0.024721369001781568
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-01",
+              "L07-02",
+              "L10-06",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 7,
+            "evidence_chars": 19912,
+            "elapsed_seconds": 0.017848145002062665
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01",
+              "L13-09",
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 15127,
+            "elapsed_seconds": 0.016139905001182342
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.010541374998865649
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.009746395000547636
+          }
+        ],
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04",
+              "L09-07",
+              "L10-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13833,
+            "elapsed_seconds": 0.01712603100168053
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08",
+              "L13-07",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14254,
+            "elapsed_seconds": 0.018935723997856257
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01",
+              "L02-01",
+              "L05-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13645,
+            "elapsed_seconds": 0.008969251000962686
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02",
+              "L18-01",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14485,
+            "elapsed_seconds": 0.022627172998909373
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10",
+              "L15-03",
+              "L10-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13358,
+            "elapsed_seconds": 0.02154628800053615
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.014985030997195281
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10835,
+            "elapsed_seconds": 0.016745449000154622
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03",
+              "L08-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 13851,
+            "elapsed_seconds": 0.010753687998658279
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.01875343400024576
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08",
+              "L12-08",
+              "L17-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 12051,
+            "elapsed_seconds": 0.020855573999142507
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06",
+              "L14-04",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13301,
+            "elapsed_seconds": 0.013559488997998415
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.017841884000517894
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L01-04",
+              "L13-09",
+              "L13-04",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 7,
+            "evidence_chars": 24025,
+            "elapsed_seconds": 0.0163360560000001
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06",
+              "L10-04",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13530,
+            "elapsed_seconds": 0.018432304001180455
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.01960478500041063
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L06-03",
+              "L16-06",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15485,
+            "elapsed_seconds": 0.018570440999610582
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-01",
+              "L07-02",
+              "L10-06",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 7,
+            "evidence_chars": 19912,
+            "elapsed_seconds": 0.015091740002389997
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01",
+              "L13-09",
+              "L09-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 15127,
+            "elapsed_seconds": 0.015714531000412535
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.010034450999228284
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.009589609999238746
+          }
+        ]
+      ]
+    },
+    {
+      "top_papers": 8,
+      "metrics": {
+        "single_hit_rate": 1.0,
+        "multi_final_hit_rate": 1.0,
+        "multi_all_turn_hit_rate": 1.0,
+        "mean_citations": 5.5,
+        "mean_evidence_chars": 14178.35,
+        "mean_elapsed_seconds": 0.01819560569983878
+      },
+      "identical_repeats": true,
+      "runs": [
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04",
+              "L09-07",
+              "L10-06",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15443,
+            "elapsed_seconds": 0.015513948997977423
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08",
+              "L13-07",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14254,
+            "elapsed_seconds": 0.014550822001183406
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01",
+              "L02-01",
+              "L05-04",
+              "L05-03",
+              "L04-03",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 19980,
+            "elapsed_seconds": 0.009211214997776551
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02",
+              "L18-01",
+              "L09-07",
+              "L01-04",
+              "L07-06",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 18368,
+            "elapsed_seconds": 0.021394336999946972
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10",
+              "L15-03",
+              "L10-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13358,
+            "elapsed_seconds": 0.018839010001101997
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.010350830001698341
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10835,
+            "elapsed_seconds": 0.017302852997090667
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03",
+              "L08-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 13851,
+            "elapsed_seconds": 0.012699397000687895
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.03194501200050581
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08",
+              "L12-08",
+              "L17-07",
+              "L23-02",
+              "L17-03",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 15665,
+            "elapsed_seconds": 0.028339374999632128
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06",
+              "L14-04",
+              "L13-09",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15274,
+            "elapsed_seconds": 0.01594149400261813
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.017110439999669325
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L01-04",
+              "L13-09",
+              "L04-04",
+              "L14-04",
+              "L13-01",
+              "L13-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 9,
+            "evidence_chars": 25436,
+            "elapsed_seconds": 0.022298694999335567
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06",
+              "L10-04",
+              "L11-02",
+              "L13-06",
+              "L22-03",
+              "L15-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 20951,
+            "elapsed_seconds": 0.024542471001041122
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.014991909996751929
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L06-03",
+              "L16-06",
+              "L07-03",
+              "L09-04",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 19031,
+            "elapsed_seconds": 0.023955264001415344
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-01",
+              "L07-02",
+              "L10-10",
+              "L10-06",
+              "L12-03",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 9,
+            "evidence_chars": 25260,
+            "elapsed_seconds": 0.01988664999953471
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01",
+              "L13-09",
+              "L09-01",
+              "L01-02",
+              "L01-03",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 20769,
+            "elapsed_seconds": 0.019389576998946723
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.013735374999669148
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.0119134380001924
+          }
+        ],
+        [
+          {
+            "split": "single",
+            "id": "dev-st-01",
+            "turn": 0,
+            "question": "What safety mechanisms does LaMDA use to filter unsafe responses during dialogue?",
+            "gold_paper_ids": [
+              "L01-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L01-03",
+              "L16-05",
+              "L01-04",
+              "L09-07",
+              "L10-06",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15443,
+            "elapsed_seconds": 0.020407348001754144
+          },
+          {
+            "split": "single",
+            "id": "dev-st-02",
+            "turn": 0,
+            "question": "How does Dense Passage Retrieval (DPR) train its bi-encoder, and why does it outperform BM25 on open-domain QA benchmarks?",
+            "gold_paper_ids": [
+              "L04-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L04-04",
+              "L13-03",
+              "L14-08",
+              "L13-07",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 14254,
+            "elapsed_seconds": 0.01915548699980718
+          },
+          {
+            "split": "single",
+            "id": "dev-st-03",
+            "turn": 0,
+            "question": "Describe the multi-head self-attention mechanism introduced in the original Transformer paper and explain why it replaces recurrence.",
+            "gold_paper_ids": [
+              "L08-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-01",
+              "L08-04",
+              "L09-01",
+              "L02-01",
+              "L05-04",
+              "L05-03",
+              "L04-03",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 19980,
+            "elapsed_seconds": 0.012296461001824355
+          },
+          {
+            "split": "single",
+            "id": "dev-st-04",
+            "turn": 0,
+            "question": "What are the two pre-training objectives used by BERT, and how does the masked language model objective differ from standard left-to-right language modeling?",
+            "gold_paper_ids": [
+              "L09-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L09-01",
+              "L04-03",
+              "L02-02",
+              "L18-01",
+              "L09-07",
+              "L01-04",
+              "L07-06",
+              "L10-10"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 18368,
+            "elapsed_seconds": 0.027773716999945464
+          },
+          {
+            "split": "single",
+            "id": "dev-st-05",
+            "turn": 0,
+            "question": "How does Direct Preference Optimization (DPO) eliminate the need for a separate reward model during alignment?",
+            "gold_paper_ids": [
+              "L10-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-04",
+              "L09-07",
+              "L10-10",
+              "L15-03",
+              "L10-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 5,
+            "evidence_chars": 13358,
+            "elapsed_seconds": 0.02478998099832097
+          },
+          {
+            "split": "single",
+            "id": "dev-st-06",
+            "turn": 0,
+            "question": "Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.",
+            "gold_paper_ids": [
+              "L11-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-01",
+              "L11-02"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 3581,
+            "elapsed_seconds": 0.014159966998704476
+          },
+          {
+            "split": "single",
+            "id": "dev-st-07",
+            "turn": 0,
+            "question": "How does Retrieval-Augmented Generation (RAG) combine a retriever with a sequence-to-sequence generator, and what evidence shows it improves factual accuracy?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-06",
+              "L13-08",
+              "L13-09"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 10835,
+            "elapsed_seconds": 0.022638021000602748
+          },
+          {
+            "split": "single",
+            "id": "dev-st-08",
+            "turn": 0,
+            "question": "How does MemGPT organize memory into a hierarchy that mirrors an operating system's virtual memory to support long conversations?",
+            "gold_paper_ids": [
+              "L14-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-01",
+              "L14-06",
+              "L11-03",
+              "L08-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 4,
+            "evidence_chars": 13851,
+            "elapsed_seconds": 0.014598301000660285
+          },
+          {
+            "split": "single",
+            "id": "dev-st-09",
+            "turn": 0,
+            "question": "How does chain-of-thought prompting improve arithmetic and commonsense reasoning in large language models?",
+            "gold_paper_ids": [
+              "L16-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L16-01",
+              "L16-02",
+              "L16-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 6138,
+            "elapsed_seconds": 0.026627752999047516
+          },
+          {
+            "split": "single",
+            "id": "dev-st-10",
+            "turn": 0,
+            "question": "Explain the ReAct framework and how interleaving reasoning traces with actions improves task completion for language model agents.",
+            "gold_paper_ids": [
+              "L17-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L17-01",
+              "L14-02",
+              "L17-08",
+              "L12-08",
+              "L17-07",
+              "L23-02",
+              "L17-03",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 15665,
+            "elapsed_seconds": 0.028300587997364346
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 0,
+            "question": "What is the Retrieval-Augmented Generation approach?",
+            "gold_paper_ids": [
+              "L13-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-01",
+              "L13-08",
+              "L13-06",
+              "L14-04",
+              "L13-09",
+              "L14-08"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 6,
+            "evidence_chars": 15274,
+            "elapsed_seconds": 0.01588552800239995
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 1,
+            "question": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+            "gold_paper_ids": [
+              "L13-04"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-04",
+              "L13-03",
+              "L13-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 3,
+            "evidence_chars": 10192,
+            "elapsed_seconds": 0.01824568699885276
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-01",
+            "turn": 2,
+            "question": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+            "gold_paper_ids": [
+              "L13-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L13-03",
+              "L12-08",
+              "L14-06",
+              "L01-04",
+              "L13-09",
+              "L04-04",
+              "L14-04",
+              "L13-01",
+              "L13-04"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 9,
+            "evidence_chars": 25436,
+            "elapsed_seconds": 0.023408085999108152
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 0,
+            "question": "How does RLHF work for aligning language models according to the InstructGPT paper?",
+            "gold_paper_ids": [
+              "L10-01"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-01",
+              "L10-05",
+              "L10-06",
+              "L10-04",
+              "L11-02",
+              "L13-06",
+              "L22-03",
+              "L15-03"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 20951,
+            "elapsed_seconds": 0.025425252999411896
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 1,
+            "question": "What is Constitutional AI and how does it differ from RLHF?",
+            "gold_paper_ids": [
+              "L10-05"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-05",
+              "L10-01"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5699,
+            "elapsed_seconds": 0.014885864999087062
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 2,
+            "question": "The LIMA paper argues that very little alignment data is needed. How does its finding relate to those two approaches?",
+            "gold_paper_ids": [
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L10-06",
+              "L09-03",
+              "L10-01",
+              "L06-03",
+              "L16-06",
+              "L07-03",
+              "L09-04",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 19031,
+            "elapsed_seconds": 0.025139938999927836
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-02",
+            "turn": 3,
+            "question": "Can you summarize the key differences between all three alignment strategies we discussed?",
+            "gold_paper_ids": [
+              "L10-01",
+              "L10-05",
+              "L10-06"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L14-03",
+              "L12-06",
+              "L11-06",
+              "L10-01",
+              "L07-02",
+              "L10-10",
+              "L10-06",
+              "L12-03",
+              "L10-05"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 9,
+            "evidence_chars": 25260,
+            "elapsed_seconds": 0.020969591998436954
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 0,
+            "question": "What tokenization approach does SentencePiece use and why is it language-independent?",
+            "gold_paper_ids": [
+              "L08-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-03",
+              "L09-04",
+              "L21-01",
+              "L13-09",
+              "L09-01",
+              "L01-02",
+              "L01-03",
+              "L09-07"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 8,
+            "evidence_chars": 20769,
+            "elapsed_seconds": 0.020336670997494366
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 1,
+            "question": "Actually, let me switch topics. What is speculative decoding and how does it speed up Transformer inference?",
+            "gold_paper_ids": [
+              "L08-07"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L08-07",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 4127,
+            "elapsed_seconds": 0.01436035400183755
+          },
+          {
+            "split": "multi",
+            "id": "dev-mt-03",
+            "turn": 2,
+            "question": "Going back to efficient inference, how does vLLM's PagedAttention manage KV cache memory?",
+            "gold_paper_ids": [
+              "L11-03"
+            ],
+            "answer": "This is a mock response from the test endpoint. It does not perform real inference.",
+            "citations": [
+              "L11-03",
+              "L11-06"
+            ],
+            "hit_rate": 1.0,
+            "citation_count": 2,
+            "evidence_chars": 5355,
+            "elapsed_seconds": 0.013101256001391448
+          }
+        ]
+      ]
+    }
+  ]
+}
