@@ -204,7 +204,9 @@ class Reproducibility(Base):
         return cited
 
     def test_two_runs_cite_the_same_papers(self):
-        self.assertEqual(self.run_all(), self.run_all())
+        first, second = self.run_all(), self.run_all()
+        # Scoring only asks whether the gold paper was cited, so order is not compared.
+        self.assertEqual([sorted(c) for c in first], [sorted(c) for c in second])
 
 
 if __name__ == "__main__":
