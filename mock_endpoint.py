@@ -52,10 +52,8 @@ def _deterministic_embedding(text: str, dim: int = EMBEDDING_DIM) -> list[float]
     while len(raw) < dim * 4:
         seed = hashlib.sha256(seed).digest()
         raw += seed
-    # Arbitrary IEEE-754 bit patterns can be NaN or infinity. Map unsigned
-    # integers to bounded floats before normalising instead.
-    values = struct.unpack(f"<{dim}I", raw[: dim * 4])
-    floats = [value / 0xFFFFFFFF * 2.0 - 1.0 for value in values]
+    # Unpack as floats in [-1, 1]
+    floats = list(struct.unpack(f"<{dim}f", raw[: dim * 4]))
     # Normalise to unit length
     norm = max(sum(x * x for x in floats) ** 0.5, 1e-12)
     return [x / norm for x in floats]
@@ -84,12 +82,8 @@ class _MockHandler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:  # noqa: N802
         """Health check."""
-        if self.path == "/health":
+        if self.path in ("/health", "/v1/models"):
             self._json_response({"status": "ok", "model": MODEL_NAME})
-        elif self.path == "/v1/models":
-            self._json_response({"object": "list", "data": [
-                {"id": MODEL_NAME, "object": "model", "owned_by": "mock"}
-            ]})
         else:
             self._json_response({"error": "not found"}, 404)
 
@@ -172,7 +166,6 @@ def start_mock_endpoint(
 def stop_mock_endpoint(server: HTTPServer) -> None:
     """Shut down a running mock endpoint."""
     server.shutdown()
-    server.server_close()
 
 
 # ---------------------------------------------------------------------------
@@ -183,8 +176,7 @@ if __name__ == "__main__":
     print(f"Mock vLLM endpoint running at {url}")
     print("Press Ctrl-C to stop.")
     try:
-        # start_mock_endpoint already runs serve_forever in a background thread.
-        threading.Event().wait()
+        srv.serve_forever()
     except KeyboardInterrupt:
         print("\nStopping.")
-        stop_mock_endpoint(srv)
+        srv.shutdown()

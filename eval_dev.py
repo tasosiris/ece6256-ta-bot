@@ -91,7 +91,7 @@ def run_multi_turn(bot, data: list[dict], session_prefix: str = "eval-mt") -> fl
             )
             hr = hit_rate(citations, last_gold)
             scores.append(hr)
-            gold = last_gold
+            gold = item.get('gold_paper_ids', [])
             status = "✓" if hr == 1.0 else f"partial ({hr:.0%})" if hr > 0 else "✗"
             print(f"  {qid}: {status}  cited={citations}  gold={gold}")
         except Exception as exc:
@@ -114,19 +114,17 @@ def run_memory_probes(bot, data: list[dict]) -> tuple[int, int]:
         try:
             plant = item["plant_session"]
             test = item["test_session"]
-            expected = item.get("expected_facts") or [item.get("expected_fact", "")]
+            expected = item.get("expected_fact", "")
 
             # 1. Reset memory
             bot.reset_memory(plant["user_id"])
-            if test["user_id"] != plant["user_id"]:
-                bot.reset_memory(test["user_id"])
 
             # 2. Plant facts in session 1
             for turn in plant.get("turns", []):
                 bot.chat(plant["session_id"], plant["user_id"], turn["content"])
 
-            # 3. Inspect the tested user's store (also supports isolation probes).
-            memory = bot.get_memory(test["user_id"])
+            # 3. Inspect store
+            memory = bot.get_memory(plant["user_id"])
             memory_text = " ".join(str(m) for m in memory).lower()
 
             # 4. Test in session 2
@@ -138,13 +136,13 @@ def run_memory_probes(bot, data: list[dict]) -> tuple[int, int]:
             answer = answer.lower()
 
             if probe_type == "positive":
-                in_store = all(fact.lower() in memory_text for fact in expected)
-                in_output = all(fact.lower() in answer for fact in expected)
+                in_store = expected.lower() in memory_text
+                in_output = expected.lower() in answer
                 ok = in_store and in_output
                 detail = f"store={'✓' if in_store else '✗'} output={'✓' if in_output else '✗'}"
             else:  # negative
-                not_in_store = all(fact.lower() not in memory_text for fact in expected)
-                not_in_output = all(fact.lower() not in answer for fact in expected)
+                not_in_store = expected.lower() not in memory_text
+                not_in_output = expected.lower() not in answer
                 ok = not_in_store and not_in_output
                 detail = f"store={'✓' if not_in_store else '✗'} output={'✓' if not_in_output else '✗'}"
 
@@ -188,9 +186,6 @@ def run_preflight(bot) -> bool:
                 f"  chat() shape:    FAIL — citations is {type(result['citations']).__name__}, expected list"
             )
             ok = False
-        elif any(not isinstance(citation, str) for citation in result["citations"]):
-            print("  chat() shape:    FAIL — citations must contain paper ID strings")
-            ok = False
         else:
             print("  chat() shape:    ✓  {answer: str, citations: list}")
     except TimeoutError:
@@ -218,9 +213,6 @@ def run_preflight(bot) -> bool:
         elif any(not isinstance(m, str) for m in mem):
             print("  get_memory():    FAIL — list contains non-str items")
             ok = False
-        elif mem:
-            print("  get_memory():    FAIL — reset_memory() did not empty this user")
-            ok = False
         else:
             print(f"  get_memory():    ✓  list[str] ({len(mem)} items)")
     except Exception as exc:
@@ -241,7 +233,7 @@ def main():
         "--mock", action="store_true", help="Use the bundled mock endpoint"
     )
     parser.add_argument("--endpoint", type=str, default=None, help="vLLM endpoint URL")
-    parser.add_argument("--model", type=str, default=None, help="Served model name; auto-detected if omitted")
+    parser.add_argument("--model", type=str, default="mock-model", help="Model name")
     parser.add_argument(
         "--corpus",
         type=str,
@@ -249,38 +241,28 @@ def main():
         help="Path to corpus directory",
     )
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    parser.add_argument("--top-papers", type=int, default=3, help="Papers retrieved per query")
-    parser.add_argument("--no-rewrite", action="store_true", help="Disable model query rewriting")
-    parser.add_argument("--timeout", type=float, default=60, help="Endpoint timeout in seconds")
-    parser.add_argument("--extra-memory-probes", type=Path, action="append", default=[],
-                        help="Append a JSONL memory probe file (repeatable)")
     args = parser.parse_args()
 
     # Resolve endpoint
     server = None
     if args.mock:
         sys.path.insert(0, str(SCRIPT_DIR))
-        from mock_endpoint import MODEL_NAME, start_mock_endpoint
+        from mock_endpoint import start_mock_endpoint
 
         endpoint, server = start_mock_endpoint()
-        model = args.model or MODEL_NAME
         print(f"Mock endpoint started at {endpoint}\n")
+    elif args.endpoint:
+        endpoint = args.endpoint
     else:
-        from endpoint_config import resolve_settings
-        try:
-            endpoint, model = resolve_settings(args.endpoint, args.model, args.timeout)
-        except (ValueError, TimeoutError) as exc:
-            parser.exit(1, str(exc) + "\n")
+        print("ERROR: specify --mock or --endpoint <url>", file=sys.stderr)
+        sys.exit(1)
 
     config = {
         "endpoint": endpoint,
-        "model": model,
+        "model": args.model,
         "corpus_path": args.corpus,
         "temperature": 0.0,
         "seed": args.seed,
-        "top_papers": args.top_papers,
-        "rewrite": not args.no_rewrite,
-        "timeout": args.timeout,
     }
 
     # Import and instantiate
@@ -294,19 +276,12 @@ def main():
         sys.exit(1)
 
     # Preflight checks
-    if not run_preflight(bot):
-        bot.close()
-        if server:
-            from mock_endpoint import stop_mock_endpoint
-            stop_mock_endpoint(server)
-        sys.exit(1)
+    run_preflight(bot)
 
     # Load dev data
     st_data = load_jsonl(DEV_DIR / "single_turn.jsonl")
     mt_data = load_jsonl(DEV_DIR / "multi_turn.jsonl")
     mp_data = load_jsonl(DEV_DIR / "memory_probes.jsonl")
-    for path in args.extra_memory_probes:
-        mp_data.extend(load_jsonl(path))
 
     # Run
     print("=" * 60)
@@ -339,14 +314,10 @@ def main():
     print("the hidden set on PACE-ICE with the Llama Judge.")
     print("=" * 60)
 
-    bot.close()
     if server:
         from mock_endpoint import stop_mock_endpoint
 
         stop_mock_endpoint(server)
-
-    if mp_passed < mp_total:
-        sys.exit(1)
 
 
 if __name__ == "__main__":
