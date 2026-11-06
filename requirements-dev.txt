@@ -1,4 +1,0 @@
-# Optional experiment plotting and PDF report generation; not needed by TABot.
--r requirements.txt
-matplotlib>=3.3,<4
-reportlab>=3.5,<4
