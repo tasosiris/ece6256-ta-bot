@@ -1,0 +1,54 @@
+test_config_reaches_the_endpoint (test_bot.Conversation) ... ok
+test_history_stays_inside_user_and_session (test_bot.Conversation) ... ok
+test_rewrite_can_be_disabled (test_bot.Conversation) ... ok
+test_rewrite_label_is_stripped_and_used (test_bot.Conversation) ... ok
+test_unreachable_endpoint_raises_timeout (test_bot.EndpointFailures) ... ok
+test_refuses_unsafe_facts (test_bot.MemoryExtraction) ... ok
+test_stores_safe_facts (test_bot.MemoryExtraction) ... ok
+test_forget_and_reset (test_bot.MemoryStore) ... ok
+test_memory_path_survives_restart (test_bot.MemoryStore) ... ok
+test_new_project_replaces_old (test_bot.MemoryStore) ... ok
+test_paper_questions_are_not_recall (test_bot.MemoryStore) ... ok
+test_recall_crosses_sessions_without_citations (test_bot.MemoryStore) ... ok
+test_users_are_isolated (test_bot.MemoryStore) ... ok
+test_chat_works_from_a_different_thread (test_grading.Contract) ... ok
+test_get_memory_returns_strings_and_unknown_user_is_safe (test_grading.Contract) ... ok
+test_paper_answer_shape_and_real_paper_ids (test_grading.Contract) ... ok
+test_read_only_corpus (test_grading.Contract) ... ok
+test_reset_empties_store (test_grading.Contract) ... ok
+test_runs_from_another_directory (test_grading.Contract) ... ok
+test_signatures_match_the_readme (test_grading.Contract) ... ok
+test_unusual_messages_never_crash (test_grading.Contract) ... ok
+test_all_probes (test_grading.Memory) ... ok
+test_two_runs_cite_the_same_papers (test_grading.Reproducibility) ... ok
+test_imports_are_declared (test_grading.Submission) ... ok
+test_no_external_api_clients (test_grading.Submission) ... ok
+test_no_paper_ids_in_code (test_grading.Submission) ... ok
+test_nothing_hard_coded (test_grading.Submission) ... ok
+test_academic_forgetting_question_is_not_a_delete_request (test_ta_bot.BotTests) ... ok
+test_all_safe_fact_categories (test_ta_bot.BotTests) ... ok
+test_contract_and_paper_level_citations (test_ta_bot.BotTests) ... ok
+test_endpoint_with_v1_suffix_and_seed (test_ta_bot.BotTests) ... ok
+test_explicit_opt_out_applies_to_whole_message (test_ta_bot.BotTests) ... ok
+test_followup_keeps_the_previous_subject (test_ta_bot.BotTests) ... ok
+test_forget_category_and_forget_everything (test_ta_bot.BotTests) ... ok
+test_fts_special_characters_are_data (test_ta_bot.BotTests) ... ok
+test_history_is_bounded (test_ta_bot.BotTests) ... ok
+test_malformed_endpoint_responses_become_timeout (test_ta_bot.BotTests) ... ok
+test_memory_is_deduplicated_and_read_only (test_ta_bot.BotTests) ... ok
+test_memory_recall_across_sessions_and_user_isolation (test_ta_bot.BotTests) ... ok
+test_names_and_projects_replace_old_values (test_ta_bot.BotTests) ... ok
+test_network_and_http_errors_become_timeout (test_ta_bot.BotTests) ... ok
+test_persistent_memory_survives_restart (test_ta_bot.BotTests) ... ok
+test_reset_removes_memory_and_all_user_history (test_ta_bot.BotTests) ... ok
+test_retrieval_is_deterministic (test_ta_bot.BotTests) ... ok
+test_sensitive_negated_quoted_third_party_and_temporary_facts_are_refused (test_ta_bot.BotTests) ... ok
+test_sensitive_text_is_not_replayed (test_ta_bot.BotTests) ... ok
+test_session_and_user_history_are_isolated (test_ta_bot.BotTests) ... ok
+test_top_papers_controls_retrieval (test_ta_bot.BotTests) ... ok
+test_topic_switch_does_not_rewrite (test_ta_bot.BotTests) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 12.979s
+
+OK

@@ -1,0 +1,156 @@
+{
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "seed": 42,
+  "split_counts": {
+    "tune/followup": 15,
+    "heldout/followup": 15,
+    "tune/control": 5,
+    "heldout/control": 5
+  },
+  "groups": {
+    "followup": {
+      "n": 15,
+      "rewrite_off": {
+        "hits": 6,
+        "rate": 0.4,
+        "wilson95": [
+          0.1982449614134158,
+          0.6425316987937539
+        ]
+      },
+      "rewrite_on": {
+        "hits": 14,
+        "rate": 0.9333333333333333,
+        "wilson95": [
+          0.7018347012621998,
+          0.9881331045067315
+        ]
+      },
+      "paired": {
+        "gains": 8,
+        "losses": 0,
+        "p": 0.0078125,
+        "difference": 0.5333333333333333,
+        "bootstrap95": [
+          0.26666666666666666,
+          0.8
+        ]
+      }
+    },
+    "control": {
+      "n": 5,
+      "rewrite_off": {
+        "hits": 5,
+        "rate": 1.0,
+        "wilson95": [
+          0.5655175352168251,
+          1.0
+        ]
+      },
+      "rewrite_on": {
+        "hits": 5,
+        "rate": 1.0,
+        "wilson95": [
+          0.5655175352168251,
+          1.0
+        ]
+      },
+      "paired": {
+        "gains": 0,
+        "losses": 0,
+        "p": 1.0,
+        "difference": 0.0,
+        "bootstrap95": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "recoveries": [
+    {
+      "id": "followup-04",
+      "paper_id": "L17-01",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-08",
+      "paper_id": "L12-01",
+      "real_rank": 3,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-10",
+      "paper_id": "L11-03",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-12",
+      "paper_id": "L13-09",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-14",
+      "paper_id": "L14-06",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-24",
+      "paper_id": "L15-03",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-26",
+      "paper_id": "L13-12",
+      "real_rank": 2,
+      "mock_rank": 4
+    },
+    {
+      "id": "followup-28",
+      "paper_id": "L09-03",
+      "real_rank": 3,
+      "mock_rank": 4
+    }
+  ],
+  "misses": [
+    {
+      "id": "followup-18",
+      "turns": [
+        "What is BERT?",
+        "Which datasets showed the largest gains?"
+      ]
+    }
+  ],
+  "off_citations_match_mock": true,
+  "offline_tests": 49,
+  "runtime": {
+    "python": "3.10.12",
+    "matplotlib": "3.10.9"
+  },
+  "source_commit": "3a7353c9fe156fb9c843a3c6ae14731e9420c283",
+  "sha256": {
+    "ta_bot.py": "2fdead2ede6d12f17e430e653f5cd48cb1ca03cd596e4bb18d5a404e6bac2fe4",
+    "ablation/results.json": "0750082484adfff97ccb35cc0f09d4fc9391f5843f737afa1fb48c6972b354ef",
+    "ablation/dialogues.jsonl": "bbf09a08870eb31cb4f4dd9315315e18cd696151d2b8aa75ecebb9b405bd418c",
+    "ablation/run_ablation.py": "aea6b48ce90d82a70db808b317a1d140cb8555b9207fbf57f82d9c911ecc6330",
+    "corpus/corpus.db": "7a48f25e28b6e0c8976eaa625ca09feca8c9ce2df95e826c9e69c978db8460ff",
+    "tests/test_bot.py": "bd06e04400df8188271d6191eafb9ee9659a0905fe33f4f0b37488327c3a2828",
+    "tests/test_grading.py": "2a7cf7dbc86590d93525989559672d9574fd5c88ffaadb18503d00e3b53489bb",
+    "tests/test_ta_bot.py": "7265f1691aa64d9b94dd11e083b5435b7f03295dac93e92158e4b9486e25a240",
+    "report/build_report.py": "46a17e2c7b1544968b868ce603f5e4c064bb7bc375f03e06f5bba3c227e31f09",
+    "report/validation/mock_heldout.json": "46615943c85352fcc0565a004fc518858d0142c3f03bad6e51a196041c3675f4",
+    "report/validation/unit_tests.txt": "75468107decc8a476ee9d19ba0d69841d741ab3ac9fe365c170c57c6f47c2670",
+    "report/validation/dev_eval_mock.txt": "4ea52f6b7b12867163dcf6a72d01e0029bd0e4165372c6ce4cb769812028694e"
+  },
+  "provenance": {
+    "real_ablation": "Archived collaborator results; model and seed recorded; no new real-model run.",
+    "hardware_and_prior_dev_scores": "Reported in the collaborator draft at commit 3a7353c; raw logs unavailable.",
+    "mock_and_offline_tests": "Re-executed for this revision; logs and mock outcomes archived here.",
+    "answer_quality": "No archived course-judge scores or raw stand-in judge evidence; unmeasured."
+  }
+}

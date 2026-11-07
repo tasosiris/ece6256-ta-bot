@@ -1,0 +1,3 @@
+# Only for rebuilding the report and its figure; separate from the bot runtime.
+matplotlib>=3.3,<4
+reportlab>=3.6,<4

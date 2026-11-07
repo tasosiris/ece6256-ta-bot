@@ -1,0 +1,496 @@
+{
+  "model": "mock-model",
+  "mock": true,
+  "split": "heldout",
+  "seed": 42,
+  "failed_runs": 0,
+  "summary": {
+    "followup": {
+      "n": 15,
+      "rewrite_off": {
+        "hit_rate": 0.4,
+        "ci_low": 0.13333333333333333,
+        "ci_high": 0.6666666666666666
+      },
+      "rewrite_on": {
+        "hit_rate": 0.9333333333333333,
+        "ci_low": 0.8,
+        "ci_high": 1.0
+      },
+      "paired": {
+        "only_rewrite_on": 8,
+        "only_rewrite_off": 0,
+        "p": 0.0078125
+      }
+    },
+    "control": {
+      "n": 5,
+      "rewrite_off": {
+        "hit_rate": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "rewrite_on": {
+        "hit_rate": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0
+      },
+      "paired": {
+        "only_rewrite_on": 0,
+        "only_rewrite_off": 0,
+        "p": 1.0
+      }
+    }
+  },
+  "rows": [
+    {
+      "id": "followup-02",
+      "kind": "followup",
+      "gold_paper_id": "L13-04",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L08-05",
+          "L08-07",
+          "L10-03",
+          "L13-04"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L08-05",
+          "L08-07",
+          "L10-03",
+          "L13-04"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-04",
+      "kind": "followup",
+      "gold_paper_id": "L17-01",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L17-13",
+          "L10-06",
+          "L15-03"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L17-13",
+          "L22-03",
+          "L10-06",
+          "L17-01"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-06",
+      "kind": "followup",
+      "gold_paper_id": "L16-02",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L16-02",
+          "L14-03",
+          "L02-02"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L16-02",
+          "L14-03",
+          "L02-02"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-08",
+      "kind": "followup",
+      "gold_paper_id": "L12-01",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L10-07",
+          "L10-03",
+          "L14-02"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L10-07",
+          "L10-03",
+          "L14-02",
+          "L12-01"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-10",
+      "kind": "followup",
+      "gold_paper_id": "L11-03",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L09-07",
+          "L01-04",
+          "L07-03"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L09-07",
+          "L01-04",
+          "L07-03",
+          "L11-03"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-12",
+      "kind": "followup",
+      "gold_paper_id": "L13-09",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L10-01",
+          "L16-04",
+          "L13-13"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L10-01",
+          "L16-04",
+          "L13-13",
+          "L13-09"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-14",
+      "kind": "followup",
+      "gold_paper_id": "L14-06",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L11-01",
+          "L09-07",
+          "L21-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L11-01",
+          "L09-07",
+          "L21-01",
+          "L14-06"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-16",
+      "kind": "followup",
+      "gold_paper_id": "L10-05",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L10-05",
+          "L13-06"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L10-05",
+          "L13-06"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-18",
+      "kind": "followup",
+      "gold_paper_id": "L09-01",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L16-01",
+          "L09-07",
+          "L09-02"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": false,
+        "citations": [
+          "L16-01",
+          "L09-07",
+          "L09-02"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-20",
+      "kind": "followup",
+      "gold_paper_id": "L03-07",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L14-04",
+          "L03-07",
+          "L03-09"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L14-04",
+          "L03-07",
+          "L03-09"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-22",
+      "kind": "followup",
+      "gold_paper_id": "L16-07",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L16-07",
+          "L17-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L16-07",
+          "L17-01"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-24",
+      "kind": "followup",
+      "gold_paper_id": "L15-03",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L13-03",
+          "L03-09",
+          "L06-04"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L13-03",
+          "L03-09",
+          "L06-04",
+          "L15-03"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-26",
+      "kind": "followup",
+      "gold_paper_id": "L13-12",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L08-01",
+          "L15-04",
+          "L06-03"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L08-01",
+          "L15-04",
+          "L06-03",
+          "L13-12"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-28",
+      "kind": "followup",
+      "gold_paper_id": "L09-03",
+      "rewrite_off": {
+        "hit": false,
+        "citations": [
+          "L04-01",
+          "L10-03",
+          "L24-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L04-01",
+          "L10-03",
+          "L24-01",
+          "L09-03"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "followup-30",
+      "kind": "followup",
+      "gold_paper_id": "L23-02",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L16-05",
+          "L01-02",
+          "L23-02"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L16-05",
+          "L01-02",
+          "L23-02"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "control-02",
+      "kind": "control",
+      "gold_paper_id": "L18-01",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L18-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L18-01"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "control-04",
+      "kind": "control",
+      "gold_paper_id": "L19-01",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L19-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L19-01"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "control-06",
+      "kind": "control",
+      "gold_paper_id": "L24-01",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L24-01"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L24-01",
+          "L13-04"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "control-08",
+      "kind": "control",
+      "gold_paper_id": "L17-05",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L17-05",
+          "L22-03"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L17-05",
+          "L22-03"
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "control-10",
+      "kind": "control",
+      "gold_paper_id": "L10-07",
+      "rewrite_off": {
+        "hit": true,
+        "citations": [
+          "L10-07"
+        ],
+        "error": null
+      },
+      "rewrite_on": {
+        "hit": true,
+        "citations": [
+          "L10-07"
+        ],
+        "error": null
+      }
+    }
+  ]
+}
