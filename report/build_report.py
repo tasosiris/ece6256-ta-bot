@@ -114,6 +114,17 @@ def analyze():
     for expected in ("Single-turn hit-rate:  100.0%", "Multi-turn hit-rate:   100.0%", "2/2 passed"):
         assert expected in dev_log
     result["runtime"] = {"python": platform.python_version(), "matplotlib": matplotlib.__version__}
+    local_case = json.loads((HERE / "bonus/local_lora_case.json").read_text())
+    local_summary = json.loads((HERE / "bonus/local_judge_run/summary.json").read_text())
+    assert local_case["status"] == "observed_local_judge_error_with_raw_evidence"
+    assert local_case["official_course_judge"] is False
+    assert local_case["repeated_identical_requests"] == 3
+    assert all(local_case["judge"][key] == 5 for key in ("accuracy", "relevance", "completeness", "grounding"))
+    for path, digest in local_case["sha256"].items():
+        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
+    result["local_judge_case"] = {"id": local_case["case_id"], "model": local_case["model"],
+                                 "scores": local_case["judge"], "repeat_count": 3,
+                                 "official_course_judge": False, "study_summary": local_summary}
     result["source_commit"] = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=str(ROOT), text=True).strip()
     files = [ROOT / "ta_bot.py", ROOT / "ablation/results.json", ROOT / "ablation/dialogues.jsonl",
@@ -121,14 +132,15 @@ def analyze():
              ROOT / "tests/test_bot.py", ROOT / "tests/test_grading.py", ROOT / "tests/test_ta_bot.py",
              HERE / "build_report.py",
              HERE / "validation/mock_heldout.json", HERE / "validation/unit_tests.txt",
-             HERE / "validation/dev_eval_mock.txt"]
+             HERE / "validation/dev_eval_mock.txt", HERE / "bonus/local_lora_case.json",
+             HERE / "bonus/local_judge_run/summary.json"]
     result["sha256"] = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest()
                         for path in files}
     result["provenance"] = {
-        "real_ablation": "Archived collaborator results; model and seed recorded; no new real-model run.",
+        "real_ablation": "Archived collaborator rewriting ablation; no new run of that ablation.",
         "hardware_and_prior_dev_scores": "Reported in the collaborator draft at commit 3a7353c; raw logs unavailable.",
         "mock_and_offline_tests": "Re-executed for this revision; logs and mock outcomes archived here.",
-        "answer_quality": "No archived course-judge scores or raw stand-in judge evidence; unmeasured."}
+        "answer_quality": "A new local evidence-aware self-judge run and a reproduced LoRA scoring error are archived. Official course scores and calibrated quality remain unmeasured."}
     (HERE / "analysis.json").write_text(json.dumps(result, indent=2) + "\n")
     return result
 
@@ -211,8 +223,9 @@ def build(data, authors):
     p("The archived experiment uses <b>meta-llama/Llama-3.1-8B-Instruct</b>, temperature 0 and "
       "seed 42. The prior team draft describes serving it with vLLM on a PACE-ICE A40, rather than "
       "the staff's shared endpoint. Model/seed/results are saved; hardware details and earlier "
-      "public-dev logs survive only as descriptions in that draft. This revision audits those "
-      "saved results and reruns local checks; it does not claim a new real-model or course-judge run.")
+      "public-dev logs survive only as descriptions in that draft. This revision also runs "
+      "the cached 8B checkpoint locally on an A100 80GB (bfloat16, vLLM 0.19.1, 16K context) "
+      "for a new public-dev and self-judge study. Both runs are separate from the official grader.")
     heading("2. Ablation: the rewrite flag (R4)")
     p("<b>Design.</b> Forty authored two-turn dialogues are split into 20 tuning and 20 labelled "
       "held-out cases. The reported split contains 15 context-dependent follow-ups and five "
@@ -290,42 +303,49 @@ def build(data, authors):
     heading("5. Validation, provenance and reproducibility")
     table([["Evidence", "Result and status"],
            ["Archived real-model ablation", "15 follow-ups + 5 controls; 0/40 failed condition runs"],
-           ["Real public-dev results in prior draft", "Reported: 10/10 single-turn; 3/3 dialogue endings; 2/2 public and 10/10 extra memory probes. Raw logs not committed."],
-           ["New local replay for this revision", "49/49 offline tests; mock dev: 100% single-turn and dialogue-ending recall, 2/2 public memory probes. The suite also checks all 10 extra probes."],
-           ["Repeatability in prior real-model draft", "Reported: equal dev scores across two runs, one citation-order change; raw repeat logs unavailable."],
-           ["Course judge / answer-quality threshold", "Not measured in the archived evidence; no bonus judge-error claim."]],
+           ["New local 8B dev run", "10/10 single-turn and 3/3 dialogue endings at full recall; all 12 memory probes pass (4 positive, 8 negative)."],
+           ["Offline validation", "49/49 tests; mock dev: 100% single-turn and dialogue-ending recall; all public and extra memory probes checked."],
+           ["Local evidence-aware self-judge", "20 actual answers judged; 18 valid JSON replies, 2 malformed replies retained. One LoRA error documented; three identical requests all get 5/5."],
+           ["Official course judge / quality bar", "Not run. Local self-judge scores do not establish the 0.76 quality threshold or official bonus eligibility."]],
           [195, 319])
-    p("The current {}-test suite covers interface signatures, paper-level citations, read-only "
-      "corpus access, alternate working directories, cross-thread calls, endpoint failures, "
-      "session/user isolation, persistent memory, sensitive-fact refusal, deletion, and "
-      "deterministic citation membership. It passes in a fresh Python {} environment. "
-      "Disabling SQLite's thread check permits calls from another thread; the tests do not "
-      "establish safe concurrent writes. The team relaxed a real-model order-sensitive "
-      "test after seeing equal citation sets in different orders; this revision reruns that "
-      "check only offline, so it does not claim the revised test passed on the real model.".format(
+    p("The {}-test suite passes offline in Python {} and covers contracts, citations, "
+      "read-only corpus access, thread handoff, endpoint failures, isolation, persistence "
+      "and privacy controls. Thread handoff does not establish safe concurrent writes. "
+      "Earlier real dev repeats reportedly had equal scores but a citation-order change; "
+      "their raw repeat logs are unavailable. The current local study retains exact "
+      "answers, passages, judge requests/responses and model/server configuration.".format(
           data["offline_tests"], data["runtime"]["python"]))
-    p("<b>Reproduce.</b> Install requirements.txt, run the commands below, and supply the "
-      "course/development endpoint and its served model explicitly for a new real run. Use "
-      "--out to preserve the archived real-model results. The report adds a mock "
-      "diagnostic, fresh check logs, recomputed statistics, a vector plot, and SHA-256 "
-      "source/data hashes under report/. The real-model artifact lacks raw answers, "
-      "rewrite text, server settings and run-time code/corpus hashes; those were not "
-      "retroactively reconstructed as execution provenance.")
+    p("<b>Reproduce.</b> Install requirements.txt and supply the endpoint/model explicitly. "
+      "local_inference/README.txt gives the cached checkpoint revision and local server "
+      "command. The new judge protocol is fixed before generating the 20 public answers. "
+      "Checksums and raw calls are saved under report/bonus/. The older rewriting "
+      "ablation lacks run-time code/corpus hashes and raw answers; those were not "
+      "retroactively asserted as execution provenance. Use --out to preserve that archive.")
     story.append(Preformatted(
         "python -m unittest discover -s tests -v\n"
         "python eval_dev.py --mock\n"
         "python eval_dev.py --endpoint \"$A3_ENDPOINT\" --model \"$A3_MODEL\"\n"
         "python ablation/run_ablation.py --endpoint \"$A3_ENDPOINT\" \\\n"
         "  --model \"$A3_MODEL\" --split heldout --out /tmp/real-ablation.json\n"
+        "python local_inference/run_judge_study.py --endpoint \"$A3_ENDPOINT\" \\\n"
+        "  --model \"$A3_MODEL\" --output /tmp/new-local-judge-study\n"
         "python report/build_report.py", code))
-    heading("6. Answer quality and judging")
-    p("Retrieval hit-rate measures whether the supplied evidence contains a gold paper; "
-      "returning that ID does not verify the answer's claims or use of the evidence. The "
-      "prior team draft describes answer inspections, a stand-in Llama scorer, and "
-      "individual scoring errors, but the corresponding answers/scores are not archived. "
-      "The local scorer is not the course judge. No numeric quality score, 0.76-threshold "
-      "pass, or documented course-judge mistake is claimed. Real-model answer grounding, "
-      "privacy leakage and graded-server performance still need direct evaluation.")
+    heading("6. Observed local judge error (bonus evidence)")
+    p("For dev-st-06, the actual LoRA answer says <i>'This is in contrast to full fine-tuning, "
+      "which requires'</i> and gives <font face='Courier'>L_Adpt(2dr+r+d)+2L_LN*d</font> "
+      "(ASCII notation), the adapter/LayerNorm parameter-count formula. "
+      "The supplied LoRA passage explicitly defines its L_Adpt term as the number of "
+      "<b>adapter layers</b>; the supplied abstract says full fine-tuning <b>retrains all "
+      "model parameters</b>. Thus the answer wrongly attributes an adapter formula to "
+      "full fine-tuning. Yet the evidence-aware local 8B judge scores accuracy, relevance, "
+      "completeness and grounding <b>5/5</b>, reports no unsupported claims, and repeats "
+      "those scores on <b>all three identical requests</b>. The contradiction was in its "
+      "input, not withheld evidence. Full answer, exact formula, source chunks, fixed "
+      "judge prompt and unedited responses are in report/bonus/local_lora_case.json. "
+      "This case was selected from the complete saved 20-answer run; no bot answer was "
+      "edited. It demonstrates a local self-judge failure, not an official grader error "
+      "or population error rate. No hidden prompt was reconstructed; staff determine "
+      "bonus eligibility. Retrieval recall alone cannot detect this factual error.")
     heading("7. AI-use disclosure")
     p("The prior team draft documents Claude Code (Anthropic) assistance with core "
       "retrieval/memory code, prompts, tests, PACE experiments, analysis and the initial "
@@ -333,8 +353,10 @@ def build(data, authors):
       "and tooling in the earlier revision. For this revision, Codex pulled and inspected "
       "the collaborator's changes, checked archived per-dialogue outcomes against their "
       "labels, recomputed statistics, replayed the mock diagnostic, ran the offline suite, "
-      "and wrote/rendered this report. The real-model run was supplied by the collaborator "
-      "and was not rerun here. Verification described here is automated and linked to "
+      "set up local 8B inference, captured the judge study and checked the LoRA claim "
+      "against the actual supplied passages. The archived ablation came from the "
+      "collaborator; the new local judge run was executed for this revision. Codex also "
+      "wrote/rendered this report. Verification is automated and linked to "
       "saved artifacts; no undocumented independent human review or course-judge evaluation "
       "is represented as completed.")
 

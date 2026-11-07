@@ -1,0 +1,66 @@
+Observed local judge error: adapter parameters mislabelled as full fine-tuning
+
+Status and scope
+
+This is a newly executed local development experiment, not the official course
+judge. Both generator and judge are meta-llama/Llama-3.1-8B-Instruct, served with
+vLLM on one NVIDIA A100 80GB GPU, bfloat16, temperature 0, seed 42. The model
+checkpoint revision and server command are in local_inference/server_manifest.json.
+Staff determine whether this clearly labelled local case earns the assignment bonus.
+
+Question: Explain how LoRA reduces the number of trainable parameters by using low-rank decomposition of weight update matrices.
+Public case: dev-st-06/turn-1
+
+Actual bot claim (verbatim; part of the unedited saved answer)
+
+This is in contrast to full fine-tuning, which requires |Θ| = L̂Adpt × (2 × dmodel × r + r + dmodel ) + 2 × L̂LN × dmodel, where L̂Adpt is the number of adapter layers and L̂LN is the number of trainable LayerNorms.
+
+Actual local judge output
+
+{
+  "accuracy": 5,
+  "relevance": 5,
+  "completeness": 5,
+  "grounding": 5,
+  "reason": "The answer accurately explains how LoRA reduces the number of trainable parameters, provides relevant details about the low-rank decomposition, and cites the correct source passages to support its claims.",
+  "unsupported_claims": []
+}
+
+Why this judgment is wrong
+
+The LoRA passage explicitly identifies L_Adpt as the number of adapter layers
+and L_LN as the number of trainable LayerNorms. The expression therefore counts
+adapter-based tuning parameters. The same supplied paper's abstract defines full
+fine-tuning as retraining all model parameters. The answer mislabels the adapter
+expression as full fine-tuning: this is a concrete factual attribution error in
+the key parameter-count comparison, not a preference about writing style.
+
+These passages were actually included in the judge's request. Despite having the
+contradicting evidence, it gives full accuracy and grounding marks and reports
+no unsupported claims. Replaying the identical original judge request twice more
+gives the same four 5/5 scores and empty unsupported_claims list: three of three.
+
+Corrected explanation
+
+LoRA freezes the original weights and learns low-rank factors. Adapter tuning
+learns added adapter-layer parameters and optionally LayerNorm parameters. Full
+fine-tuning retrains the original model parameters. The answer's adapter formula
+must be attributed to adapters, not to full fine-tuning.
+
+Evidence and verification
+
+Full unedited answer, original judge request/response, source chunks, exact
+incorrect excerpt, repeats, model identity and checksums: local_lora_case.json.
+All twenty public answers and all twenty judge replies: local_judge_run/.
+The judge prompt was fixed before answers were generated; no hidden judge prompt
+or hidden test data was inspected. Answers were saved before they were judged.
+Two of twenty judge replies were malformed JSON and remain preserved unchanged;
+this case's original and repeated judgments are valid JSON. No overall calibrated
+answer-quality score or exact replacement grade is claimed.
+
+Limits
+
+This demonstrates an observed local self-judge failure, not an error by the
+official course grader or a general failure rate. Same-model self-judging is a
+limitation; this single case does not isolate the cause of the error. The earlier
+tau-bench anecdote remains a separate historical candidate, not this new run.

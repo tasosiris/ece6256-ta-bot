@@ -132,7 +132,38 @@
     "python": "3.10.12",
     "matplotlib": "3.10.9"
   },
-  "source_commit": "3a7353c9fe156fb9c843a3c6ae14731e9420c283",
+  "local_judge_case": {
+    "id": "dev-st-06/turn-1",
+    "model": "meta-llama/Llama-3.1-8B-Instruct",
+    "scores": {
+      "accuracy": 5,
+      "relevance": 5,
+      "completeness": 5,
+      "grounding": 5,
+      "reason": "The answer accurately explains how LoRA reduces the number of trainable parameters, provides relevant details about the low-rank decomposition, and cites the correct source passages to support its claims.",
+      "unsupported_claims": []
+    },
+    "repeat_count": 3,
+    "official_course_judge": false,
+    "study_summary": {
+      "generator_and_local_judge": "meta-llama/Llama-3.1-8B-Instruct",
+      "public_answers": 20,
+      "single_questions": 10,
+      "single_hit_rate": 1.0,
+      "dialogue_endings": 3,
+      "multi_final_hit_rate": 1.0,
+      "valid_json_judgments": 18,
+      "invalid_json_judgments": [
+        "dev-st-02/turn-1",
+        "dev-mt-02/turn-1"
+      ],
+      "memory_probes_passed": 12,
+      "official_course_judge": false,
+      "answer_quality_threshold_pass": null,
+      "note": "No calibrated quality score is inferred from this local self-judge."
+    }
+  },
+  "source_commit": "47ab6cb7ad524537fbfc719c8dd186938cd578c6",
   "sha256": {
     "ta_bot.py": "2fdead2ede6d12f17e430e653f5cd48cb1ca03cd596e4bb18d5a404e6bac2fe4",
     "ablation/results.json": "0750082484adfff97ccb35cc0f09d4fc9391f5843f737afa1fb48c6972b354ef",
@@ -142,15 +173,17 @@
     "tests/test_bot.py": "bd06e04400df8188271d6191eafb9ee9659a0905fe33f4f0b37488327c3a2828",
     "tests/test_grading.py": "2a7cf7dbc86590d93525989559672d9574fd5c88ffaadb18503d00e3b53489bb",
     "tests/test_ta_bot.py": "7265f1691aa64d9b94dd11e083b5435b7f03295dac93e92158e4b9486e25a240",
-    "report/build_report.py": "46a17e2c7b1544968b868ce603f5e4c064bb7bc375f03e06f5bba3c227e31f09",
+    "report/build_report.py": "b0232619cf299f0db8b9f219a6fbc0953ba0d2a4e3632806d22563c135bfaf2d",
     "report/validation/mock_heldout.json": "46615943c85352fcc0565a004fc518858d0142c3f03bad6e51a196041c3675f4",
     "report/validation/unit_tests.txt": "75468107decc8a476ee9d19ba0d69841d741ab3ac9fe365c170c57c6f47c2670",
-    "report/validation/dev_eval_mock.txt": "4ea52f6b7b12867163dcf6a72d01e0029bd0e4165372c6ce4cb769812028694e"
+    "report/validation/dev_eval_mock.txt": "4ea52f6b7b12867163dcf6a72d01e0029bd0e4165372c6ce4cb769812028694e",
+    "report/bonus/local_lora_case.json": "06c93355a3c3019a0a58c233ba51a1c59c3cdc6e86d47b5a9c3e8c03769882e1",
+    "report/bonus/local_judge_run/summary.json": "28388c1c66199b7437f3d1baa7103b2709b80bd936b40fd16061aa8aa5219e8d"
   },
   "provenance": {
-    "real_ablation": "Archived collaborator results; model and seed recorded; no new real-model run.",
+    "real_ablation": "Archived collaborator rewriting ablation; no new run of that ablation.",
     "hardware_and_prior_dev_scores": "Reported in the collaborator draft at commit 3a7353c; raw logs unavailable.",
     "mock_and_offline_tests": "Re-executed for this revision; logs and mock outcomes archived here.",
-    "answer_quality": "No archived course-judge scores or raw stand-in judge evidence; unmeasured."
+    "answer_quality": "A new local evidence-aware self-judge run and a reproduced LoRA scoring error are archived. Official course scores and calibrated quality remain unmeasured."
   }
 }

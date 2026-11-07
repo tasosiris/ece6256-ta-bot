@@ -1,11 +1,16 @@
-Judge-error bonus: candidate evidence, not a completed claim
+Historical tau-bench candidate audit
+
+A new, fully captured local LoRA judge-error case is now documented in
+LOCAL_JUDGE_CASE.txt and local_lora_case.json. The account below concerns only
+the earlier tau-bench anecdote and its missing original logs.
 
 Status
 
 The README offers up to five bonus points for documenting an incorrect judge
 score with evidence. The current repository does not contain the original
 scored answer or the judge's output for the candidate below. The final report
-therefore continues to make no bonus claim. No judge score has been invented.
+does not present that historical anecdote as a verified result. No judge score
+has been invented. The final report now documents the separate new local case.
 
 Candidate
 

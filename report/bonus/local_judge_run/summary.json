@@ -1,0 +1,17 @@
+{
+  "generator_and_local_judge": "meta-llama/Llama-3.1-8B-Instruct",
+  "public_answers": 20,
+  "single_questions": 10,
+  "single_hit_rate": 1.0,
+  "dialogue_endings": 3,
+  "multi_final_hit_rate": 1.0,
+  "valid_json_judgments": 18,
+  "invalid_json_judgments": [
+    "dev-st-02/turn-1",
+    "dev-mt-02/turn-1"
+  ],
+  "memory_probes_passed": 12,
+  "official_course_judge": false,
+  "answer_quality_threshold_pass": null,
+  "note": "No calibrated quality score is inferred from this local self-judge."
+}

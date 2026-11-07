@@ -1,0 +1,50 @@
+{
+  "pid": 526858,
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "model": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+  "command": [
+    "/data/mfp5696/.venvs/vrga-official-judge-pinned/bin/python",
+    "-m",
+    "vllm.entrypoints.openai.api_server",
+    "--model",
+    "/data/mfp5696/.cache/huggingface/hub/models--meta-llama--Llama-3.1-8B-Instruct/snapshots/0e9e39f249a16976918f6564b8830bc894c89659",
+    "--served-model-name",
+    "meta-llama/Llama-3.1-8B-Instruct",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "8000",
+    "--dtype",
+    "bfloat16",
+    "--max-model-len",
+    "16384",
+    "--gpu-memory-utilization",
+    "0.5",
+    "--max-num-seqs",
+    "4",
+    "--enforce-eager",
+    "--seed",
+    "42",
+    "--generation-config",
+    "vllm"
+  ],
+  "environment_overrides": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "log": "/tmp/ece6256-local-8b/server.log",
+  "hardware": [
+    "0, NVIDIA A100 80GB PCIe, 81920 MiB",
+    "1, NVIDIA A100 80GB PCIe, 81920 MiB",
+    "2, NVIDIA A100 80GB PCIe, 81920 MiB"
+  ],
+  "package_versions": {
+    "vllm": "0.19.1",
+    "torch": "2.10.0",
+    "transformers": "5.6.0",
+    "fastapi": "0.162.0",
+    "uvicorn": "0.54.0"
+  }
+}

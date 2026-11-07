@@ -21,6 +21,26 @@ answers are not committed. The revision labels these prior reported checks and
 does not turn them into newly verified results or a course-judge quality score.
 The old PDF remains available in Git history.
 
+Additional local 8B study and observed judge error
+
+The user subsequently requested local 8B/3B inference. A cached
+Llama-3.1-8B-Instruct checkpoint is now served on one A100 through vLLM.
+local_inference/README.txt and server_manifest.json record setup and hardware.
+This is a local development endpoint and self-judge, not the official grader.
+
+bonus/local_judge_run/ preserves all 20 authentic public-dev answers, retrieved
+passages, and original judge requests/responses. Eighteen judge replies are valid
+JSON; the two malformed replies are retained. The run gets full public retrieval
+recall, and the separate real-endpoint memory test passes all 12 probes.
+
+bonus/LOCAL_JUDGE_CASE.txt and bonus/local_lora_case.json document a genuine
+local false-positive: the bot assigns an adapter parameter-count formula to full
+fine-tuning, despite the supplied LoRA passages distinguishing them. The local
+judge awards all four criteria 5/5 and lists no unsupported claims, on all three
+identical requests. The complete 20-answer run is retained, not just the chosen
+case. This is evidence of a local judge error; staff determine bonus eligibility.
+The earlier tau-bench candidate audit remains historical and separate.
+
 Reproduce the local evidence (Python 3.10+ for the current test suite)
 
   python -m pip install -r requirements.txt -r report/requirements.txt
@@ -41,5 +61,6 @@ The paired gain interval uses 2,000 bootstrap samples, seed 42.
 
 A real-model rerun needs an available endpoint and model name. Save any new run
 to another path with --out; do not overwrite ../ablation/results.json unless
-intentionally replacing the archived experiment. No new real-model run was
-performed for this report revision.
+intentionally replacing the archived experiment. The archived rewriting ablation
+was not rerun. The additional local 8B dev and self-judge experiment is a new run
+and has its own complete raw records.
