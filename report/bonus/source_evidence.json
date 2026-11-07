@@ -1,0 +1,96 @@
+{
+  "status": "candidate_only_missing_actual_scored_answer_and_judge_output",
+  "bonus_claim_ready": false,
+  "candidate": "A full-mark answer may have misclassified tau-bench as a cross-domain retriever-comparison benchmark.",
+  "known_provenance": {
+    "prior_draft_commit": "3a7353c9fe156fb9c843a3c6ae14731e9420c283",
+    "prior_draft_git_blob": "664e14fc7b2472dc046ecdee030e86337f8e4344",
+    "prior_draft_judge_note_verbatim": "5. Judge caveat\nWe do not have the course judge's scores, so we cannot claim it erred. As a stand-in we scored answers\nwith a Llama model and our own prompt built on the README's four criteria, giving it the cited passages. It\nscored an earlier answer 5/5 on all four although it listed tau-bench (L12-08, a tool-agent-user benchmark)\nas a benchmark for comparing retrieval methods. It also marked down a true omission in a BERT control\n(completeness 3), so it is not uniformly lenient. This is one case on a stand-in, and it is consistent with the\nlimited reasoning ability reported for LLM judges in L12-01.",
+    "note_status": "A report of an earlier stand-in judge run, not its raw experimental record."
+  },
+  "candidate_public_dialogue": {
+    "id": "dev-mt-01",
+    "turns": [
+      {
+        "role": "user",
+        "content": "What is the Retrieval-Augmented Generation approach?",
+        "gold_paper_ids": [
+          "L13-01"
+        ]
+      },
+      {
+        "role": "user",
+        "content": "How does ColBERT's late interaction compare to the retriever used in that approach?",
+        "gold_paper_ids": [
+          "L13-04"
+        ]
+      },
+      {
+        "role": "user",
+        "content": "Which evaluation benchmarks have been used to compare these retrieval methods across diverse domains?",
+        "gold_paper_ids": [
+          "L13-03"
+        ]
+      }
+    ],
+    "topic": "retrieval-comparison",
+    "pattern": "follow-up-drill-down"
+  },
+  "sources": [
+    {
+      "paper_id": "L12-08",
+      "title": "$τ$-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+      "arxiv_id": "2406.12045",
+      "url": "https://arxiv.org/abs/2406.12045",
+      "abstract_from_papers_table": "Existing benchmarks do not test language agents on their interaction with human users or ability to follow domain-specific rules, both of which are vital for deploying them in real world applications. We propose $τ$-bench, a benchmark emulating dynamic conversations between a user (simulated by language models) and a language agent provided with domain-specific API tools and policy guidelines. We employ an efficient and faithful evaluation process that compares the database state at the end of a conversation with the annotated goal state. We also propose a new metric (pass^k) to evaluate the reliability of agent behavior over multiple trials. Our experiments show that even state-of-the-art function calling agents (like gpt-4o) succeed on <50% of the tasks, and are quite inconsistent (pass^8 <25% in retail). Our findings point to the need for methods that can improve the ability of agents to act consistently and follow rules reliably.",
+      "chunk_id": "L12-08#000",
+      "section": "Abstract",
+      "exact_chunk_text": "τ -bench: A Benchmark for Tool-Agent-User\nInteraction in Real-World Domains\nShunyu Yao∗\n\nNoah Shinn\n\nPedram Razavi\n\nKarthik Narasimhan\n\narXiv:2406.12045v1 [cs.AI] 17 Jun 2024\n\nSierra\n\nAbstract\nExisting benchmarks do not test language agents on their interaction with human\nusers or ability to follow domain-specific rules, both of which are vital for deploying\nthem in real world applications. We propose τ -bench, a benchmark emulating\ndynamic conversations between a user (simulated by language models) and a\nlanguage agent provided with domain-specific API tools and policy guidelines.\nWe employ an efficient and faithful evaluation process that compares the database\nstate at the end of a conversation with the annotated goal state. We also propose\na new metric (pass^k) to evaluate the reliability of agent behavior over multiple\ntrials. Our experiments show that even state-of-the-art function calling agents (like\ngpt-4o) succeed on < 50% of the tasks, and are quite inconsistent (pass^8 < 25%\nin retail). Our findings point to the need for methods that can improve the ability\nof agents to act consistently and follow rules reliably.\n\n1",
+      "chunk_sha256": "b8febaacd36dfe74d36df86d78fc861debfb8a99dc6721dcdf3a8582e52975a3"
+    },
+    {
+      "paper_id": "L13-03",
+      "title": "BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models",
+      "arxiv_id": "2104.08663",
+      "url": "https://arxiv.org/abs/2104.08663",
+      "abstract_from_papers_table": "Existing neural information retrieval (IR) models have often been studied in homogeneous and narrow settings, which has considerably limited insights into their out-of-distribution (OOD) generalization capabilities. To address this, and to facilitate researchers to broadly evaluate the effectiveness of their models, we introduce Benchmarking-IR (BEIR), a robust and heterogeneous evaluation benchmark for information retrieval. We leverage a careful selection of 18 publicly available datasets from diverse text retrieval tasks and domains and evaluate 10 state-of-the-art retrieval systems including lexical, sparse, dense, late-interaction and re-ranking architectures on the BEIR benchmark. Our results show BM25 is a robust baseline and re-ranking and late-interaction-based models on average achieve the best zero-shot performances, however, at high computational costs. In contrast, dense and sparse-retrieval models are computationally more efficient but often underperform other approaches, highlighting the considerable room for improvement in their generalization capabilities. We hope this framework allows us to better evaluate and understand existing retrieval systems, and contributes to accelerating progress towards better robust and generalizable systems in the future. BEIR is publicly available at https://github.com/UKPLab/beir.",
+      "chunk_id": "L13-03#001",
+      "section": "Abstract",
+      "exact_chunk_text": "Abstract\nExisting neural information retrieval (IR) models have often been studied in homogeneous and narrow settings, which has considerably limited insights into their\nout-of-distribution (OOD) generalization capabilities. To address this, and to facilitate researchers to broadly evaluate the effectiveness of their models, we introduce\nBenchmarking-IR (BEIR), a robust and heterogeneous evaluation benchmark for\ninformation retrieval. We leverage a careful selection of 18 publicly available\ndatasets from diverse text retrieval tasks and domains and evaluate 10 state-of-theart retrieval systems including lexical, sparse, dense, late-interaction and re-ranking\narchitectures on the BEIR benchmark. Our results show BM25 is a robust baseline\nand re-ranking and late-interaction based models on average achieve the best zeroshot performances, however, at high computational costs. In contrast, dense and\nsparse-retrieval models are computationally more efficient but often underperform\nother approaches, highlighting the considerable room for improvement in their\ngeneralization capabilities. We hope this framework allows us to better evaluate\nand understand existing retrieval systems, and contributes to accelerating progress\ntowards better robust and generalizable systems in the future. BEIR is publicly\navailable at https://github.com/UKPLab/beir.\n\n1",
+      "chunk_sha256": "cdca1ce8543695c5181b95269c360494e8688400b93bc7bfe13e6b65d654c0ac"
+    }
+  ],
+  "verified_factual_distinction": {
+    "tau_bench": "Evaluates tool-agent-user interaction and policy-following in retail/airline tasks; database goal-state comparison and repeated-trial reliability are its evaluation targets.",
+    "beir": "Evaluates ten retrieval systems across eighteen text-retrieval datasets and diverse domains.",
+    "scope": "The tau-bench passages do not substantiate the alleged claim about comparing retrieval methods across diverse domains; this does not assert it can never be adapted for another task."
+  },
+  "existing_retrieval_observation": {
+    "log_file": "report/validation/dev_eval_mock.txt",
+    "verbatim": "  dev-mt-01: ✓  cited=['L13-03', 'L12-08', 'L14-06', 'L13-04', 'L13-01']  gold=[]",
+    "limit": "A retrieved distractor does not show that the generated answer asserted anything about it. The mock answer is canned, not a real-model error."
+  },
+  "actual_bot_answer": null,
+  "actual_judge_output": null,
+  "course_judge_identity": null,
+  "required_to_finish": [
+    "Exact original question and conversation context for the scored response",
+    "Exact unedited bot answer and citations",
+    "Unedited judge score and explanation, with its provenance",
+    "Whether this is the course judge or an explicitly identified local stand-in",
+    "The evidence available to the judge, if known; do not seek or reconstruct the hidden judge prompt"
+  ],
+  "limits": [
+    "No course judge endpoint, credentials, or feedback is available in this environment.",
+    "No judge answer/score artifacts were found in tracked Git history, repository issues, or releases.",
+    "The prior draft describes a local stand-in, not the course judge.",
+    "tests/judge_check.py has no separate passages input; without the original request, what source evidence the stand-in saw is unknown.",
+    "No new generation or judging call was performed. No numeric score, faulty answer, or qualifying bonus result was fabricated."
+  ],
+  "sha256": {
+    "corpus/corpus.db": "7a48f25e28b6e0c8976eaa625ca09feca8c9ce2df95e826c9e69c978db8460ff",
+    "dev_eval/multi_turn.jsonl": "436b89500892f83cc004fd3b8bf6a373e8abc21bc2c2ba7c1f432783d669b77c",
+    "tests/judge_check.py": "00906ae1de4b052a60a0a74ce1fbc2dedb4fb71cdf350648a16b38887857eb74",
+    "report/validation/dev_eval_mock.txt": "4ea52f6b7b12867163dcf6a72d01e0029bd0e4165372c6ce4cb769812028694e"
+  }
+}

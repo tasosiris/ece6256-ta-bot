@@ -1,0 +1,56 @@
+Judge-error bonus: candidate evidence, not a completed claim
+
+Status
+
+The README offers up to five bonus points for documenting an incorrect judge
+score with evidence. The current repository does not contain the original
+scored answer or the judge's output for the candidate below. The final report
+therefore continues to make no bonus claim. No judge score has been invented.
+
+Candidate
+
+The team's earlier report at commit 3a7353c describes a local Llama judge awarding
+5/5 on all four criteria to an answer that listed tau-bench as a benchmark for
+comparing retrieval methods. This is a reported anecdote about a stand-in judge,
+not an archived course-judge result. Its exact question, answer, request, and
+response were not saved. The public dialogue dev-mt-01 is a relevant candidate
+to inspect, but cannot be asserted to be the scored example without those logs.
+
+Verified paper evidence
+
+1. L12-08, tau-bench, arXiv:2406.12045, Abstract (chunk L12-08#000).
+   This benchmark evaluates a language agent interacting with users and API
+   tools under domain policies. It compares final database states to goal
+   states and measures repeated-trial reliability in retail and airline tasks.
+
+2. L13-03, BEIR, arXiv:2104.08663, Abstract (chunk L13-03#001).
+   This benchmark explicitly compares ten retrieval systems, including lexical,
+   sparse, dense, late-interaction and reranking architectures, using eighteen
+   datasets from diverse text-retrieval tasks and domains.
+
+An answer citing the tau-bench paper as evidence of such a retriever comparison
+would have an unsupported attribution. Full marks for accuracy or grounding
+would then require scrutiny. This does not establish a particular corrected
+numeric score, nor does it prove that a judge made that mistake in a real run.
+
+source_evidence.json preserves the exact corpus passages, paper metadata, hashes,
+public conversation, and verbatim anecdote from the historical PDF. The current
+mock dev log does include L12-08 among retrieved citations, making it a plausible
+distractor. Retrieval alone is not evidence that an answer repeated the error.
+
+What is still needed
+
+Obtain the exact answer that was scored and the original judge feedback: score,
+explanation, and whether it came from the course judge or a named local stand-in.
+Preserve the original question/context and citations alongside it. If available,
+retain the evidence supplied to the judge. Do not infer or reverse-engineer the
+course judge's hidden prompt, and do not substitute a newly written answer for
+the answer that actually received the score.
+
+Once that record exists, compare the exact disputed claim to the passages above
+and write a short case naming the observed score, the citation mismatch, and
+the justified correction. Keep a local stand-in experiment explicitly labelled;
+its eligibility for the course bonus would need confirmation from the staff.
+
+No new real-model or judge call was possible for this preparation: there is no
+configured endpoint or saved course feedback in the available environment.
